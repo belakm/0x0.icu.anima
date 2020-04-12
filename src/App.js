@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>
-          0x0.icu.anima
+          0x0.icu
         </h1>
       </header>
     </div>
