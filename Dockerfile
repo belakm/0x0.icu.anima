@@ -29,6 +29,8 @@ FROM nginx:alpine
 # copy the build folder from react to the root of nginx (www)
 COPY --from=build /0x0.icu.anima/build /usr/share/nginx/html
 
+RUN rm -rf /0x0.icu.anima
+
 # --------- only for those using react router ----------
 # if you are using react router 
 # you need to overwrite the default nginx configurations
