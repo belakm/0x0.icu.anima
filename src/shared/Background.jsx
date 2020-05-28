@@ -10,6 +10,10 @@ const BackgroundImage = styled.div.attrs(props => (
   background: hsl(266, 5%, 23%);
   width: 100%;
   height: 100%;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   position: absolute;
   transition: background-color .4s ease-in;
   z-index: -2;

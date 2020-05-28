@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
 import Meta from './shared/Meta';
-import Background from './shared/Background'
-import Wrapper from './shared/Wrapper'
-import Jumbotron from './portfolio/Jumbotron'
-import PersonalInfo from './portfolio/PersonalInfo';
-import Gallery from './portfolio/Gallery';
+import Gallery from './gallery/Gallery';
+import Header from './header/Header';
+import Background from './shared/Background';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 class App extends Component {
   render() {
-    const style = {
-      width: '100%',
-      height: '100%',
-      overflow: 'auto'
-    }
     return (
-      <div className="App" style={style}>
+      <div className="App">
         <Meta></Meta>
+        <Header></Header>
+        <Route path="/">
+          <Gallery />
+        </Route>
         <Background></Background>
-        <Wrapper>
-          <Jumbotron></Jumbotron>
-          <PersonalInfo></PersonalInfo>
-          <Gallery></Gallery>
-        </Wrapper>
       </div>
     )
   }
