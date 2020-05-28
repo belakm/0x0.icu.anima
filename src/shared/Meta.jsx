@@ -4,9 +4,9 @@ import { MetaTags } from 'react-meta-tags';
 class Meta extends Component {
 
   state = {
-    title: 'Nina Kosednar',
-    description: 'Art portfolio of Nina Kosednar, alias Sitri.',
-    tags: 'Sitri, Nina Kosednar, Portfolio',
+    title: 'xxx',
+    description: 'Art portfolio of xxxx, alias xxx.',
+    tags: 'xxxx, Portfolio',
     siteUrl: 'https://0x0.icu/sitri',
     siteName: '0x0.icu.anima',
     imageUrl: '',

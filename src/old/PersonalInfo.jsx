@@ -68,11 +68,11 @@ class PersonalInfo extends Component {
   render() {
     return <PersonalInfoList>
       <PersonalInfoListItem>
-        name: <PersonalBit>Nina Kosednar</PersonalBit>
+        name: <PersonalBit>xxxx</PersonalBit>
       </PersonalInfoListItem>
 
       <PersonalInfoListItem>
-        alias: <PersonalBit>Sitri</PersonalBit>
+        alias: <PersonalBit>xxx</PersonalBit>
       </PersonalInfoListItem>
 
       <PersonalInfoListItem>
@@ -85,7 +85,7 @@ class PersonalInfo extends Component {
       </PersonalInfoListItem>
 
       <PersonalInfoListItem>
-        mail: <PersonalBit>sitri@0x0.icu</PersonalBit>
+        mail: <PersonalBit>xxx</PersonalBit>
       </PersonalInfoListItem>
 
       <PersonalInfoListItem>
