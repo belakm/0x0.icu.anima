@@ -1,17 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import * as React from 'react'
+import { render } from 'react-dom'
+import { RouteComponentProps, Router } from '@reach/router'
+import { ThemeProvider } from 'styled-components';
+import Theme from './theme/themes/default/Default'
+import Background from './components/skeleton/Background';
 
-ReactDOM.render(
+// Sites
+import GlobalStyle from './theme/GlobalStyle';
+import LandingPage from './components/sites/LandingPage';
+
+const RouterPage = (
+  props: { pageComponent: JSX.Element } & RouteComponentProps,
+) => props.pageComponent;
+
+const App = () => (
+  // future proofing app
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
+    <ThemeProvider theme={Theme}>
+      <Router>
+        <RouterPage path="/" pageComponent={<LandingPage />} />
+      </Router>
+      <Background />
+      <GlobalStyle />
+    </ThemeProvider>
+  </React.StrictMode>
 );
 
-// Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
-// Learn more: https://www.snowpack.dev/#hot-module-replacement
-if (import.meta.hot) {
-  import.meta.hot.accept();
-}
+render(<App />, document.getElementById('root'));
