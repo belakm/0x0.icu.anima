@@ -12,29 +12,30 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel src/index.html",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "fix": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
-    "clear-build-cache": "rm -rf .cache/ dist/"
+    "dev": "next dev",
+    "build": "next build",
+    "serve": "next serve",
+    "start": "next start"
   },
   "dependencies": {
-    "@blueprintjs/core": "^3.33.0",
-    "@reach/router": "^1.3.4",
-    "@types/reach__router": "^1.3.6",
+    "@react95/core": "^2.11.4",
+    "@react95/icons": "^0.4.2",
     "@types/react": "^16.9.52",
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.4",
-    "formik": "^2.2.0",
-    "parcel-bundler": "^1.12.4",
+    "@types/xstyled__system": "^1.19.2",
+    "@xstyled/system": "^1.19.0",
+    "next": "^9.5.5",
     "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
+    "@types/node": "^14.14.2",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
+    "babel-plugin-styled-components": "^1.11.1",
     "eslint": "^7.11.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.12.0",
@@ -43,8 +44,12 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.4",
     "eslint-plugin-react-hooks": "^4.1.2",
-    "marked": "^1.2.0",
-    "typescript": "^4.0.3"
+    "next-compose-plugins": "^2.2.0",
+    "next-fonts": "^1.4.0",
+    "next-optimized-images": "^2.6.2",
+    "next-transpile-modules": "^4.1.0",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.1"
   },
   "repository": {
     "type": "git",
