@@ -27,7 +27,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "node_modules/@react95/core/index.d.ts"
   ],
   "exclude": [
     "node_modules"
