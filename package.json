@@ -12,7 +12,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 1337",
     "build": "next build",
     "serve": "next serve",
     "start": "next start"
@@ -25,6 +25,7 @@
     "@types/styled-components": "^5.1.4",
     "@types/xstyled__system": "^1.19.2",
     "@xstyled/system": "^1.19.0",
+    "csstype": "^3.0.5",
     "next": "^9.5.5",
     "prettier": "^2.1.2",
     "react": "^16.13.1",

@@ -1,33 +1,8 @@
 import 'styled-components'
-import { IColors, IShadows } from '@react95/core/ThemeProvider/theme';
+import { R95DefaultTheme } from '@react95/core/_types/theme'
 
 // and extend them!
 declare module 'styled-components' {
-  export interface IWindow {
-    color: {
-      // window header
-      headerBackground: string
-      headerText: string
-      headerNotActiveBackground: string
-      headerNotActiveText: string,
-      // window bg
-      background: string,
-      // disabled window bg
-      backgroundDark: string,
-      // help menu for example bg
-      canvas: string,
-      // text
-      text: string,
-      textInvert: string,
-      textDisabled: string,
-      textDisabledShadow: string,
-      canvasText: string,
-      canvasTextInvert: string,
-      canvasTextDisabled: string,
-      canvasTextDisabledShadow: string,
-    },
-    padding: string
-  }
 
   export interface ThemeShades {
     dark: string
@@ -57,14 +32,12 @@ declare module 'styled-components' {
   export interface LevelsDefinition {
     background: number,
     window: number,
+    windowFullscreen,
     content: number,
   }
 
-  export interface DefaultTheme {
+  export interface DefaultTheme extends R95DefaultTheme {
     appColors: ColorDefinition
     levels: LevelsDefinition
-    window: IWindow
-    shadows: IShadows,
-    colors: IColors
   }
 }

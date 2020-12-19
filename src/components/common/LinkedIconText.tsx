@@ -1,7 +1,7 @@
 import { Icon } from '@react95/core'
 import React from 'react'
 import styled from 'styled-components'
-import icons from '@react95/icons';
+import icons from '@react95/icons'
 
 const Link = styled.a`
   padding: 0.5em 1em;
@@ -11,26 +11,26 @@ const Link = styled.a`
   }
   /* unvisited link */
   &:link {
-    color: ${props => props.theme.appColors.brand.dark};
+    color: black;
   }
   /* visited link */
   &:visited {
-    color: ${props => props.theme.appColors.brand.darkest};
+    color: grey;
   }
   /* mouse over link */
   &:hover {
-    color: ${props => props.theme.appColors.brand.normal};
+    color: blue;
   }
   /* selected link */
   &:active {
-    color: ${props => props.theme.appColors.brand.light};
+    color: darkblue;
   }
 `
 
 const LinkText = styled.span`
   height: 2em;
-  line-height: 2em; 
-  padding-left: 1em; 
+  line-height: 2em;
+  padding-left: 1em;
   font-size: 1.2em;
   display: inline-block;
   vertical-align: middle;
@@ -39,14 +39,14 @@ const LinkText = styled.span`
 `
 
 interface LinkedIconTextProps {
-  icon: keyof typeof icons,
-  href: string,
+  icon: keyof typeof icons
+  href: string
   text: string
 }
 
-const spanStyle = {display:'inline-block', verticalAlign: 'middle'}
+const spanStyle = { display: 'inline-block', verticalAlign: 'middle' }
 
-const LinkedIconText = ({ icon, href, text} : LinkedIconTextProps) => (
+const LinkedIconText = ({ icon, href, text }: LinkedIconTextProps) => (
   <Link href={href}>
     <Icon
       fallback={false}
@@ -56,7 +56,7 @@ const LinkedIconText = ({ icon, href, text} : LinkedIconTextProps) => (
       name={icon}
       style={spanStyle}
     />
-    <LinkText style={{...spanStyle, }}>{text}</LinkText>
+    <LinkText style={{ ...spanStyle }}>{text}</LinkText>
   </Link>
 )
 
