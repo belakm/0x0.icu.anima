@@ -29,7 +29,8 @@ module.exports = {
     'prettier',
   ],
   rules: {
-    semi: 0,
+    'eqeqeq': ["smart"],
+    'semi': 0,
     'no-use-before-define': [0],
     '@typescript-eslint/no-use-before-define': [1],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
