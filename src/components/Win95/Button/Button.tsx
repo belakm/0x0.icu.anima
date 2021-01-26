@@ -14,6 +14,7 @@ export const StyledButton = styled.button<ButtonProps>`
   padding: 6px 22px 6px;
   min-width: 70px;
   font-size: 12px;
+  font-family: 'win95';
   ${border()}
   :disabled {
     color: ${({ theme }) => theme.win95.canvasTextDisabled};

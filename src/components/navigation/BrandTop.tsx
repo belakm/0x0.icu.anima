@@ -1,6 +1,32 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { FlexRow } from '../common/Flex'
+
+const blackHaloBackground = css`
+  background: rgb(2, 0, 36);
+  background: -moz-radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 0, 0, 0.7315301120448179) 0%,
+    rgba(0, 0, 0, 0.23573179271708689) 74%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 0, 0, 0.7315301120448179) 0%,
+    rgba(0, 0, 0, 0.23573179271708689) 74%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 0, 0, 0.7315301120448179) 0%,
+    rgba(0, 0, 0, 0.23573179271708689) 74%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#000000",GradientType=1);
+`
 
 const LogoTitle = styled.h1`
   font-family: 'LinearBeam';
@@ -17,6 +43,8 @@ const LogoTitle = styled.h1`
   animation-duration: 1s;
   animation-direction: alternate;
   transform: rotate3d(-1, 1, 0, 3deg);
+
+  ${blackHaloBackground}
 
   @keyframes spin {
     0% {

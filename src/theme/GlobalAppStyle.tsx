@@ -28,7 +28,7 @@ const GlobalAppStyle = createGlobalStyle`
   }
 
   @font-face {
-    font-family: "pxSans";
+    font-family: "win95";
     src: url(${pxSansTtf}) format("truetype"), /* Safari, Android, iOS */
       url(${pxSansWoff}) format("woff"), /* Modern Browsers */
       url(${pxSansWoff2}) format("woff2"); /* Modern Browsers */
