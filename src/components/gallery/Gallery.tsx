@@ -120,7 +120,10 @@ const Gallery = () => {
       <FlexRow wrap="wrap" align="center">
         {images.map(({ src, title }) => (
           <FlexColumn style={{ width: '30%', margin: '1em' }} key={title}>
-            <GalleryImage src={src} title={title} />
+            <GalleryImage
+              src={src}
+              title={`${title.toUpperCase()}.sitrifile`}
+            />
           </FlexColumn>
         ))}
       </FlexRow>
