@@ -45,6 +45,7 @@ declare module 'styled-components' {
     background: number
     window: number
     content: number
+    static: number
   }
 
   export interface DefaultTheme {

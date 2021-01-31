@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Button from '../Win95/Button/Button'
 import { FlexRow } from '../common/Flex'
 import Wrapper from '../gallery/Wrapper'
+import User from '../user/User'
 
 const links = [
   {
@@ -11,31 +12,33 @@ const links = [
     href: '/',
   },
   {
-    name: 'MERCH and LOVE me',
-    href: '/about',
+    name: 'good SHIT',
+    href: '/store',
   },
 ]
 
 const TopBarStyled = styled.nav`
+  z-index: ${({ theme }) => theme.levels.static};
+  position: fixed;
+  top: 0;
   background: ${({ theme }) => theme.win95.material};
   border-bottom: 2px dashed ${({ theme }) => theme.win95.materialText};
+  width: 100%;
   padding: 0.5em 0;
-`
-const TopBarButtonStyled = styled(Button)`
-  box-shadow: none;
-  font-size: 0.9em;
-  padding: 0.5em 1em;
 `
 
 const TopBar = () => (
   <TopBarStyled>
     <Wrapper>
       <FlexRow>
-        {links.map(({ name, href }) => (
-          <Link href={href}>
-            <TopBarButtonStyled>{name}</TopBarButtonStyled>
-          </Link>
-        ))}
+        <FlexRow grow={1}>
+          {links.map(({ name, href }) => (
+            <Link href={href}>
+              <Button>{name}</Button>
+            </Link>
+          ))}
+        </FlexRow>
+        <User />
       </FlexRow>
     </Wrapper>
   </TopBarStyled>

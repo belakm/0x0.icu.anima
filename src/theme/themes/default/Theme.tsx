@@ -7,6 +7,7 @@ const Theme: DefaultTheme = {
   levels: {
     background: -9999,
     content: 0,
+    static: 50,
     window: 100,
   },
 }

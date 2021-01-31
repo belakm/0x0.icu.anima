@@ -1,40 +1,43 @@
 import React from 'react'
 import Head from 'next/head'
 import Background from './Background'
-import BrandTop from '../navigation/BrandTop'
-import TopBar from '../navigation/TopBar'
+import BrandTop from './BrandTop'
+import TopBar from './TopBar'
 import Wrapper from '../gallery/Wrapper'
-import Frame from '../Win95/Frame/Frame'
+import styled from 'styled-components'
+import Footer from './Footer'
 
-type PageProps = {
+type IPage = {
   description: string
   title: string
   children: React.ReactNode
+  metaTitle?: string
+  metaDescription?: string
 }
 
-const Page: React.FunctionComponent<PageProps> = ({
+const MainWrapper = styled(Wrapper)`
+  padding: 5em 0 3em;
+  min-height: calc(100vh - 11em);
+`
+
+const Page: React.FunctionComponent<IPage> = ({
   children,
   description = '',
   title = 'Sitri 0x0.icu',
-}: PageProps) => (
+  metaTitle = 'Sitri 0x0.icu',
+  metaDescription = "Sitri's personal website and store",
+}: IPage) => (
   <main>
     <Head>
-      <title>{title}</title>
-      <meta name="description" content={description || title} />
+      <title>{metaTitle}</title>
+      <meta name="description" content={metaDescription} />
     </Head>
     <TopBar />
-    <Wrapper style={{ paddingTop: '2em' }}>
-      <BrandTop />
+    <MainWrapper>
+      <BrandTop title={title} description={description} />
       {children}
-    </Wrapper>
-    <Frame>
-      <Wrapper>
-        <p style={{ textAlign: 'center', fontSize: '2em' }}>
-          Copyright @ 2020 - Sitri (
-          <a href="mailto:sitri@0x0.icu">sitri@0x0.icu</a>)
-        </p>
-      </Wrapper>
-    </Frame>
+    </MainWrapper>
+    <Footer />
     <Background />
   </main>
 )

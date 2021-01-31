@@ -34,7 +34,7 @@ const colorSettings: IColorSettings = {
     headerText: '#ffb1f2',
     material: '#535353',
     materialDark: '#282828',
-    materialText: '#35FF69',
+    materialText: '#35ff3f',
     materialTextDisabled: '#282828',
     materialTextDisabledShadow: '#ffb1f2',
     materialTextInvert: '#ffffff',
@@ -42,7 +42,7 @@ const colorSettings: IColorSettings = {
     tooltip: '#fefbcc',
   },
   status: {
-    ok: 'green',
+    ok: '#35ff3f',
     error: 'red',
     warning: 'yellow',
   },
