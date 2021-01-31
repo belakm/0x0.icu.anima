@@ -1,43 +1,57 @@
 import 'styled-components'
-import { R95DefaultTheme } from '@react95/core/_types/theme'
 
 // and extend them!
 declare module 'styled-components' {
 
-  export interface ThemeShades {
-    dark: string
-    darkest: string
-    normal: string
-    light: string
-    lightest: string
+  export interface IStatusColors {
+    ok: string
+    error: string
+    warning: string
   }
 
-  export interface ColorDefinition {
+  export interface IBackgroundColors {
+    lineThick: string,
+    lineThin: string,
     background: string
-    brand: ThemeShades
-    accent: ThemeShades
-    neutral: ThemeShades
-    light: ThemeShades
-    dark: ThemeShades
-    status: {
-      ok: string
-      critical: string
-      error: string
-      warning: string
-      unknown: string
-      disabled: string
-    }
+  }
+
+  export interface IWindowsColors {
+    anchor: string
+    anchorVisited: string
+    borderDark: string
+    borderDarkest: string
+    borderLight: string
+    borderLightest: string
+    canvas: string
+    canvasText: string
+    canvasTextDisabled: string
+    canvasTextDisabledShadow: string
+    canvasTextInvert: string
+    headerBackground: string
+    headerNotActiveBackground: string
+    headerNotActiveText: string
+    headerText: string
+    material: string
+    materialDark: string
+    materialText: string
+    materialTextDisabled: string
+    materialTextDisabledShadow: string
+    materialTextInvert: string
+    tooltip: string
+    progress: string
   }
 
   export interface LevelsDefinition {
-    background: number,
-    window: number,
-    windowFullscreen,
-    content: number,
+    background: number
+    window: number
+    content: number
+    static: number
   }
 
-  export interface DefaultTheme extends R95DefaultTheme {
-    appColors: ColorDefinition
+  export interface DefaultTheme {
+    background: IBackgroundColors
+    status: IStatusColors
+    win95: IWindowsColors
     levels: LevelsDefinition
   }
 }
