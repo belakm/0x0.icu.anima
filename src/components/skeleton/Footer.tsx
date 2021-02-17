@@ -1,4 +1,4 @@
-import React from 'React'
+import React from 'react'
 import Frame from '../Win95/Frame/Frame'
 import Wrapper from '../gallery/Wrapper'
 import { FlexRow } from '../common/Flex'

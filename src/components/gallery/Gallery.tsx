@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import imgsuccubus from '../../../public/images/art/succubus.jpg'
+/*import imgsuccubus from '../../../public/images/art/succubus.jpg'
 import imgteszt from '../../../public/images/art/teszt.png'
 import imgwhateven from '../../../public/images/art/whateven.png'
 import imgsfinga from '../../../public/images/art/sfinga.png'
@@ -18,7 +18,7 @@ import imgroom from '../../../public/images/art/room.png'
 import imgdog from '../../../public/images/art/dog.png'
 import imgcabinfever from '../../../public/images/art/cabinfever.png'
 import imgalien from '../../../public/images/art/alien.png'
-import imgdt from '../../../public/images/art/dt.png'
+import imgdt from '../../../public/images/art/dt.png'*/
 import GalleryImage from './GalleryImage'
 import { FlexColumn, FlexRow } from '../common/Flex'
 
@@ -28,86 +28,10 @@ interface IGalleryImage {
 }
 
 const sitriImages: IGalleryImage[] = [
-  {
+  /*{
     src: imgmask,
     title: 'mask',
-  },
-  {
-    src: imgmalware,
-    title: 'malware',
-  },
-  {
-    src: imgsuccubus,
-    title: 'succubus',
-  },
-  {
-    src: imgteszt,
-    title: 'teszt',
-  },
-  {
-    src: imgwhateven,
-    title: 'whateven',
-  },
-  {
-    src: imgsfinga,
-    title: 'sfinga',
-  },
-  {
-    src: imgsitofinal,
-    title: 'sitofinal',
-  },
-  {
-    src: imgstickers,
-    title: 'stickers',
-  },
-  {
-    src: imgferretfinal,
-    title: 'ferretfinal',
-  },
-  {
-    src: imgkissis,
-    title: 'kissis',
-  },
-  {
-    src: imgplague,
-    title: 'plague',
-  },
-  {
-    src: imgespeon,
-    title: 'espeon',
-  },
-  {
-    src: imgduo,
-    title: 'duo',
-  },
-  {
-    src: imggrl,
-    title: 'grl',
-  },
-  {
-    src: imgriotflower,
-    title: 'riotflower',
-  },
-  {
-    src: imgroom,
-    title: 'room',
-  },
-  {
-    src: imgdog,
-    title: 'dog',
-  },
-  {
-    src: imgcabinfever,
-    title: 'cabinfever',
-  },
-  {
-    src: imgalien,
-    title: 'alien',
-  },
-  {
-    src: imgdt,
-    title: 'dt',
-  },
+  }*/
 ]
 
 const Gallery = () => {
