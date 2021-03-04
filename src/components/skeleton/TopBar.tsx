@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import Button from '../Win95/Button/Button'
 import { FlexRow } from '../common/Flex'
 import Wrapper from '../gallery/Wrapper'
 import User from '../user/User'
+import ModalContext from '../../contexts/ModalContext'
 
 const links = [
   {
@@ -27,21 +28,24 @@ const TopBarStyled = styled.nav`
   padding: 0.5em 0;
 `
 
-const TopBar = () => (
-  <TopBarStyled>
-    <Wrapper>
-      <FlexRow>
-        <FlexRow grow={1}>
-          {links.map(({ name, href }) => (
-            <Link href={href}>
-              <Button>{name}</Button>
-            </Link>
-          ))}
-        </FlexRow>
-        <User />
+const TopBar = () => {
+  const modalContext = useContext(ModalContext)
+  return <TopBarStyled>
+  <Wrapper>
+    <FlexRow>
+      <FlexRow grow={1}>
+        {links.map(({ name, href }, index) => (
+          <Link key={index} href={href} passHref>
+            <Button>{name}</Button>
+          </Link>
+        ))}
       </FlexRow>
-    </Wrapper>
-  </TopBarStyled>
-)
+      <User openLoginModal={() => modalContext.openLoginModal()}/>
+    </FlexRow>
+  </Wrapper>
+</TopBarStyled>
+}
+  
+
 
 export default TopBar

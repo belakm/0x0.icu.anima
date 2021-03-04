@@ -9,6 +9,8 @@ const Theme: DefaultTheme = {
     content: 0,
     static: 50,
     window: 100,
+    modalBackdrop: 200,
+    modal: 201
   },
 }
 

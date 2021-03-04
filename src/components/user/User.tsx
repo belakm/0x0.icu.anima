@@ -1,11 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+import AuthContext from '../../contexts/AuthContext'
 import Button from '../Win95/Button/Button'
-const User = () => {
-  const [isLoggedIn] = useState(false)
+
+interface IUser {
+  openLoginModal: Function
+}
+const User = ({ openLoginModal } : IUser) => {
+  const authContext = useContext(AuthContext)
   return (
     <>
-      {!isLoggedIn && <Button style={{ marginRight: 0 }}>CONNECT IN</Button>}
-      {isLoggedIn && (
+      {!authContext.isLoggedIn && 
+        <Button 
+          style={{ marginRight: 0 }} 
+          onClick={openLoginModal()}
+        >
+          CONNECT IN
+        </Button>
+      }
+      {authContext.isLoggedIn && (
         <>
           <Button style={{ marginRight: 0 }}>Mičo</Button>
           <Button style={{ minWidth: 0 }}>▼</Button>
