@@ -1,6 +1,8 @@
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import LoginContext, { LoginProvider } from './LoginContext';
+import { FlexColumn } from '../components/common/Flex';
+import Login from '../components/user/Login';
+import Registration from '../components/user/Registration';
 
 const Backdrop = styled.div`
   z-index: ${({ theme }) => theme.levels.modalBackdrop};
@@ -8,29 +10,63 @@ const Backdrop = styled.div`
   position: fixed;
   left: 0;
   top: 0;
-  right: 0;
-  bottom: 0;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 `
 interface IModalContext {
-  openLoginModal: Function
+  openLoginModal: Function,
+  openRegistrationModal: Function
 }
 
 export const ModalContext = createContext<IModalContext>({
-  openLoginModal: () => {}
+  openLoginModal: () => {},
+  openRegistrationModal: () => {}
 })
 
 export const ModalProvider = ({ children } : { children: React.ReactElement}) => {
   const [isDialogOpen, setDialogOpen] = useState<boolean>(false)
-  const loginContext = useContext(LoginContext)
-  const loginProvider = {
+  const [loginDialogOpen, setLoginDialogOpen] = useState<boolean>(false)
+  const [registrationDialogOpen, setRegistrationDialogOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    console.log(isDialogOpen)
+    if (!isDialogOpen) {
+      setLoginDialogOpen(false)
+      setRegistrationDialogOpen(false)
+    }
+  }, [isDialogOpen])
+
+  const modalProvider = {
     openLoginModal: () => {
       setDialogOpen(true)
-      loginContext.openModal()
+      setLoginDialogOpen(true)
+      setRegistrationDialogOpen(false)
+    },
+    openRegistrationModal: () => {
+      console.log("OPEN REGISTRATION")
+      setDialogOpen(true)
+      setLoginDialogOpen(false)
+      setRegistrationDialogOpen(true)
+    }
+  }
+  
+  const backdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    console.log(e.target, e.currentTarget)
+    if (e.target === e.currentTarget) {
+      setDialogOpen(false)
     }
   }
 
-  return <ModalContext.Provider value={loginProvider}>
-    {isDialogOpen && <Backdrop onClick={() => setDialogOpen(false)} />}
+  return <ModalContext.Provider value={modalProvider}>
+    <p style={{color: 'white', marginTop: 100}}>STATUS: {loginDialogOpen.toString()} {registrationDialogOpen.toString()} {isDialogOpen.toString()}</p>
+    {isDialogOpen && <Backdrop >
+      <FlexColumn align="center center" style={{ height: '100%' }} onClick={backdropClick}>
+        {loginDialogOpen && <Login />}
+        {registrationDialogOpen && <Registration />}
+      </FlexColumn>
+    </Backdrop>}
     {children}
   </ModalContext.Provider>
 }
