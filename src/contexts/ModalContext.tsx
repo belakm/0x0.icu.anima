@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
-import LoginContext from './LoginContext';
+import LoginContext, { LoginProvider } from './LoginContext';
 
 const Backdrop = styled.div`
   z-index: ${({ theme }) => theme.levels.modalBackdrop};
@@ -19,7 +19,7 @@ export const ModalContext = createContext<IModalContext>({
   openLoginModal: () => {}
 })
 
-export const ModalProvider = ({ children } : { children: JSX.Element}) => {
+export const ModalProvider = ({ children } : { children: React.ReactElement}) => {
   const [isDialogOpen, setDialogOpen] = useState<boolean>(false)
   const loginContext = useContext(LoginContext)
   const loginProvider = {

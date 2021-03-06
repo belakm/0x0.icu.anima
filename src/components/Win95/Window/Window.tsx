@@ -2,7 +2,7 @@ import React from 'react'
 import Frame, { IFrame } from '../Frame/Frame'
 import WindowTitleBar from '../WindowTitleBar/WindowTitleBar'
 
-interface IWindow extends IFrame {
+export interface IWindow extends IFrame {
   children: React.ReactNode
   title: string
 }

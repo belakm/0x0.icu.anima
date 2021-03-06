@@ -29,9 +29,6 @@ export const StyledButton = styled.button<ButtonProps>`
     outline-offset: -5px;
     ${border({ direction: 'intrude' })};
   }
-  :not(:last-child) {
-    margin-right: 6px;
-  }
 `
 
 const Button = ({

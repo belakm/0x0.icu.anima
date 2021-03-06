@@ -5,6 +5,7 @@ import GlobalAppStyle from '../theme/GlobalAppStyle'
 import Theme from '../theme/themes/default/Theme'
 import { AuthProvider } from '../contexts/AuthContext'
 import { ModalProvider } from '../contexts/ModalContext'
+import { LoginProvider } from '../contexts/LoginContext'
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
@@ -12,9 +13,11 @@ const App = ({ Component, pageProps }: AppProps) => (
       <GlobalAppStyle />
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <AuthProvider>
-        <ModalProvider>
-          <Component {...pageProps} />
-        </ModalProvider>
+          <LoginProvider>
+            <ModalProvider>
+              <Component {...pageProps} />
+            </ModalProvider>
+          </LoginProvider>
       </AuthProvider>
     </ThemeProvider>
   </>
