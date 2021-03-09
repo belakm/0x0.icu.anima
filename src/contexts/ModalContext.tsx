@@ -31,7 +31,6 @@ export const ModalProvider = ({ children } : { children: React.ReactElement}) =>
   const [registrationDialogOpen, setRegistrationDialogOpen] = useState<boolean>(false)
 
   useEffect(() => {
-    console.log(isDialogOpen)
     if (!isDialogOpen) {
       setLoginDialogOpen(false)
       setRegistrationDialogOpen(false)
@@ -45,7 +44,6 @@ export const ModalProvider = ({ children } : { children: React.ReactElement}) =>
       setRegistrationDialogOpen(false)
     },
     openRegistrationModal: () => {
-      console.log("OPEN REGISTRATION")
       setDialogOpen(true)
       setLoginDialogOpen(false)
       setRegistrationDialogOpen(true)
@@ -53,7 +51,7 @@ export const ModalProvider = ({ children } : { children: React.ReactElement}) =>
   }
   
   const backdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log(e.target, e.currentTarget)
+    console.log("CAPTURE")
     if (e.target === e.currentTarget) {
       setDialogOpen(false)
     }
@@ -62,7 +60,7 @@ export const ModalProvider = ({ children } : { children: React.ReactElement}) =>
   return <ModalContext.Provider value={modalProvider}>
     <p style={{color: 'white', marginTop: 100}}>STATUS: {loginDialogOpen.toString()} {registrationDialogOpen.toString()} {isDialogOpen.toString()}</p>
     {isDialogOpen && <Backdrop >
-      <FlexColumn align="center center" style={{ height: '100%' }} onClick={backdropClick}>
+      <FlexColumn align="center center" style={{ height: '100%' }} onMouseDown={backdropClick}>
         {loginDialogOpen && <Login />}
         {registrationDialogOpen && <Registration />}
       </FlexColumn>

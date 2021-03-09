@@ -13,11 +13,9 @@ const Login = () => {
 
   const login = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("LOGIN")
   }
 
   const openRegistrationModal = () => {
-    console.log("OPEN REGISTRATION MODAL")
     modalContext.openRegistrationModal()
   }
   return <Modal width="480" title="CONNECT IN">
