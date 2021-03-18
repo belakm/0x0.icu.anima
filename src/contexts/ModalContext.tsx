@@ -1,8 +1,13 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import styled from 'styled-components';
+import { createClient, Provider } from 'urql';
 import { FlexColumn } from '../components/common/Flex';
-import Login from '../components/user/Login';
+import Login, { ILogin } from '../components/user/Login';
 import Registration from '../components/user/Registration';
+
+const urqlClient = createClient({
+  url: 'http://174.138.11.146:5433/graphql'
+})
 
 const Backdrop = styled.div`
   z-index: ${({ theme }) => theme.levels.modalBackdrop};
@@ -20,6 +25,16 @@ interface IModalContext {
   openRegistrationModal: Function
 }
 
+interface IDialogStates {
+  login: {
+    open: boolean
+    message?: React.ReactNode
+  },
+  register: {
+    open: boolean
+  }
+}
+
 export const ModalContext = createContext<IModalContext>({
   openLoginModal: () => {},
   openRegistrationModal: () => {}
@@ -27,42 +42,55 @@ export const ModalContext = createContext<IModalContext>({
 
 export const ModalProvider = ({ children } : { children: React.ReactElement}) => {
   const [isDialogOpen, setDialogOpen] = useState<boolean>(false)
-  const [loginDialogOpen, setLoginDialogOpen] = useState<boolean>(false)
-  const [registrationDialogOpen, setRegistrationDialogOpen] = useState<boolean>(false)
-
-  useEffect(() => {
-    if (!isDialogOpen) {
-      setLoginDialogOpen(false)
-      setRegistrationDialogOpen(false)
+  const [dialogStates, setDialogStates] = useState<IDialogStates>({
+    login: {
+      open: false
+    },
+    register: {
+      open: false
     }
-  }, [isDialogOpen])
+  })
+
+  const closeAllDialogs = () => {
+    setDialogStates(Object.keys(dialogStates).reduce((a, d) => ({...a, [d]: {open: false}}), dialogStates))
+  }
+
+  const openDialog = ({ dialog, message }: { dialog: keyof IDialogStates, message?: React.ReactNode }) =>   {
+    const closedDialogStates = Object.keys(dialogStates).reduce((a, d) => ({...a, [d]: {open: false}}), dialogStates)
+    setDialogStates({
+      ...closedDialogStates,
+      [dialog]: {
+        open: true,
+        ...(message != null && { message })
+      }
+    })
+  }
 
   const modalProvider = {
-    openLoginModal: () => {
+    openLoginModal: ({ message }: ILogin) => {
       setDialogOpen(true)
-      setLoginDialogOpen(true)
-      setRegistrationDialogOpen(false)
+      openDialog({ dialog: 'login', message })
     },
     openRegistrationModal: () => {
       setDialogOpen(true)
-      setLoginDialogOpen(false)
-      setRegistrationDialogOpen(true)
+      openDialog({ dialog: 'register' })
     }
   }
   
   const backdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log("CAPTURE")
     if (e.target === e.currentTarget) {
       setDialogOpen(false)
+      closeAllDialogs()
     }
   }
 
   return <ModalContext.Provider value={modalProvider}>
-    <p style={{color: 'white', marginTop: 100}}>STATUS: {loginDialogOpen.toString()} {registrationDialogOpen.toString()} {isDialogOpen.toString()}</p>
     {isDialogOpen && <Backdrop >
       <FlexColumn align="center center" style={{ height: '100%' }} onMouseDown={backdropClick}>
-        {loginDialogOpen && <Login />}
-        {registrationDialogOpen && <Registration />}
+        <Provider value={urqlClient}>
+          {dialogStates.login.open && <Login message={dialogStates.login.message} />}
+          {dialogStates.register.open && <Registration pageProps={{}} />}
+        </Provider>
       </FlexColumn>
     </Backdrop>}
     {children}

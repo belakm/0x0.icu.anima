@@ -15,7 +15,7 @@ const User = () => {
       {!isLoggedIn && 
         <Button 
           style={{ marginRight: 0 }} 
-          onClick={() => modalContext.openLoginModal()}
+          onClick={() => modalContext.openLoginModal({})}
         >
           CONNECT IN
         </Button>
