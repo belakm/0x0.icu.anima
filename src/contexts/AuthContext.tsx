@@ -1,5 +1,6 @@
-import { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
 import { gql, useQuery } from 'urql'
+import UrqlProvider from '../components/graphql/UrqlProvider'
 
 const FetchUser = gql`
   query FetchUser {
@@ -26,25 +27,49 @@ export interface IUser {
 
 interface IAuthContext {
   token: string | null
+  setToken: Function
   user: IUser | null
+  setUser: Function
   isLoggedIn: boolean
 }
 
 export const AuthContext = createContext<IAuthContext>({
   token: '',
+  setToken: () => {},
   user: null,
+  setUser: () => {},
   isLoggedIn: false,
 })
+
+const FetcherComponent = () => {
+  const authContext = useContext(AuthContext)
+  const [userData, fetchUser] = useQuery({ query: FetchUser })
+
+  // set or fetch user
+  useEffect(() => {
+    console.log('USER DATA', userData)
+    const { data } = userData
+    if (data == null && authContext.token != null) {
+      fetchUser()
+    } else if (data != null) {
+      const { currentPerson } = data
+      authContext.setUser(currentPerson)
+    }
+  }, [userData])
+
+  return <></>
+}
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [token, setToken] = useState<string | null>(null)
   const [isLoggedIn, setLoggedIn] = useState<boolean>(false)
-  const [userData, fetchUser] = useQuery({ query: FetchUser })
   const [user, setUser] = useState<IUser | null>(null)
   const authProvider = {
-    token,
     isLoggedIn,
+    token,
+    setToken,
     user,
+    setUser,
   }
 
   // fetch token
@@ -63,20 +88,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     }
   }, [token])
 
-  // set or fetch user
-  useEffect(() => {
-    if (userData == null && token != null) {
-      fetchUser()
-    } else if (userData != null) {
-      const {
-        data: { currentPerson },
-      } = userData
-      setUser(currentPerson)
-    }
-  }, [userData])
-
   return (
-    <AuthContext.Provider value={authProvider}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authProvider}>
+      <UrqlProvider>
+        <FetcherComponent />
+      </UrqlProvider>
+      {children}
+    </AuthContext.Provider>
   )
 }
 

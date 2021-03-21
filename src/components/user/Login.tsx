@@ -1,4 +1,4 @@
-import { Form, Formik, FormikHelpers, FormikValues } from 'formik'
+import { Form, Formik, FormikValues } from 'formik'
 import React, { useContext, useEffect, useState } from 'react'
 import { gql, useMutation } from 'urql'
 import AuthContext from '../../contexts/AuthContext'
@@ -54,6 +54,7 @@ const Login = ({ message }: ILogin) => {
           },
         } = result
         authContext.setToken(jwtToken)
+        modalContext.closeAllModals()
       }
     })
   }

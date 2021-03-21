@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import zalgo from '../../util/zalgo'
 import { FlexRow } from '../common/Flex'
 
 const blackHaloBackground = css`
@@ -115,7 +114,7 @@ const BrandTop = ({ title, description }: IBrandTop) => {
       <FlexRow align="start end">
         <LogoTitle>SITRI</LogoTitle>
         <LogoSubTitle>
-          {title} - <small>{zalgo(description)}</small>
+          {title} - <small>{description}</small>
         </LogoSubTitle>
       </FlexRow>
     </section>

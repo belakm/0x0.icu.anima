@@ -1,13 +1,9 @@
-import React, { createContext, useState } from 'react';
-import styled from 'styled-components';
-import { createClient, Provider } from 'urql';
-import { FlexColumn } from '../components/common/Flex';
-import Login, { ILogin } from '../components/user/Login';
-import Registration from '../components/user/Registration';
-
-const urqlClient = createClient({
-  url: 'http://174.138.11.146:5433/graphql'
-})
+import React, { createContext, useState } from 'react'
+import styled from 'styled-components'
+import { FlexColumn } from '../components/common/Flex'
+import UrqlProvider from '../components/graphql/UrqlProvider'
+import Login, { ILogin } from '../components/user/Login'
+import Registration from '../components/user/Registration'
 
 const Backdrop = styled.div`
   z-index: ${({ theme }) => theme.levels.modalBackdrop};
@@ -21,7 +17,8 @@ const Backdrop = styled.div`
   overflow-x: hidden;
 `
 interface IModalContext {
-  openLoginModal: Function,
+  closeAllModals: Function
+  openLoginModal: Function
   openRegistrationModal: Function
 }
 
@@ -29,44 +26,65 @@ interface IDialogStates {
   login: {
     open: boolean
     message?: React.ReactNode
-  },
+  }
   register: {
     open: boolean
   }
 }
 
 export const ModalContext = createContext<IModalContext>({
+  closeAllModals: () => {},
   openLoginModal: () => {},
-  openRegistrationModal: () => {}
+  openRegistrationModal: () => {},
 })
 
-export const ModalProvider = ({ children } : { children: React.ReactElement}) => {
+export const ModalProvider = ({
+  children,
+}: {
+  children: React.ReactElement
+}) => {
   const [isDialogOpen, setDialogOpen] = useState<boolean>(false)
   const [dialogStates, setDialogStates] = useState<IDialogStates>({
     login: {
-      open: false
+      open: false,
     },
     register: {
-      open: false
-    }
+      open: false,
+    },
   })
 
-  const closeAllDialogs = () => {
-    setDialogStates(Object.keys(dialogStates).reduce((a, d) => ({...a, [d]: {open: false}}), dialogStates))
+  const closeAllModals = () => {
+    setDialogStates(
+      Object.keys(dialogStates).reduce(
+        (a, d) => ({ ...a, [d]: { open: false } }),
+        dialogStates,
+      ),
+    )
+    setDialogOpen(false)
   }
 
-  const openDialog = ({ dialog, message }: { dialog: keyof IDialogStates, message?: React.ReactNode }) =>   {
-    const closedDialogStates = Object.keys(dialogStates).reduce((a, d) => ({...a, [d]: {open: false}}), dialogStates)
+  const openDialog = ({
+    dialog,
+    message,
+  }: {
+    dialog: keyof IDialogStates
+    message?: React.ReactNode
+  }) => {
+    const closedDialogStates = Object.keys(dialogStates).reduce(
+      (a, d) => ({ ...a, [d]: { open: false } }),
+      dialogStates,
+    )
     setDialogStates({
       ...closedDialogStates,
       [dialog]: {
         open: true,
-        ...(message != null && { message })
-      }
+        ...(message != null && { message }),
+      },
     })
   }
 
   const modalProvider = {
+    closeAllModals,
     openLoginModal: ({ message }: ILogin) => {
       setDialogOpen(true)
       openDialog({ dialog: 'login', message })
@@ -74,27 +92,37 @@ export const ModalProvider = ({ children } : { children: React.ReactElement}) =>
     openRegistrationModal: () => {
       setDialogOpen(true)
       openDialog({ dialog: 'register' })
-    }
+    },
   }
-  
+
   const backdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) {
       setDialogOpen(false)
-      closeAllDialogs()
+      closeAllModals()
     }
   }
 
-  return <ModalContext.Provider value={modalProvider}>
-    {isDialogOpen && <Backdrop >
-      <FlexColumn align="center center" style={{ height: '100%' }} onMouseDown={backdropClick}>
-        <Provider value={urqlClient}>
-          {dialogStates.login.open && <Login message={dialogStates.login.message} />}
-          {dialogStates.register.open && <Registration pageProps={{}} />}
-        </Provider>
-      </FlexColumn>
-    </Backdrop>}
-    {children}
-  </ModalContext.Provider>
+  return (
+    <ModalContext.Provider value={modalProvider}>
+      {isDialogOpen && (
+        <Backdrop>
+          <FlexColumn
+            align="center center"
+            style={{ height: '100%' }}
+            onMouseDown={backdropClick}
+          >
+            <UrqlProvider>
+              {dialogStates.login.open && (
+                <Login message={dialogStates.login.message} />
+              )}
+              {dialogStates.register.open && <Registration pageProps={{}} />}
+            </UrqlProvider>
+          </FlexColumn>
+        </Backdrop>
+      )}
+      {children}
+    </ModalContext.Provider>
+  )
 }
 
 export default ModalContext
