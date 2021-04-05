@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, FieldProps, useField } from 'formik'
-import React from 'react'
+import * as React from 'react';
 import { FlexColumn, FlexRow } from '../common/Flex'
 import FormError from './FormError'
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { css } from 'styled-components'
 import { FlexRow } from '../common/Flex'
 
@@ -112,7 +111,7 @@ const BrandTop = ({ title, description }: IBrandTop) => {
   return (
     <section>
       <FlexRow align="start end">
-        <LogoTitle>SITRI</LogoTitle>
+        <LogoTitle>0x0</LogoTitle>
         <LogoSubTitle>
           {title} - <small>{description}</small>
         </LogoSubTitle>

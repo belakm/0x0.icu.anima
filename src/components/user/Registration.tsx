@@ -1,6 +1,7 @@
 import { Form, Formik, FormikValues } from 'formik'
 import { withUrqlClient } from 'next-urql'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react';
+import * as React from 'react';
 import styled from 'styled-components'
 import { gql, useMutation } from 'urql'
 import ModalContext from '../../contexts/ModalContext'
@@ -11,22 +12,22 @@ import Button from '../Win95/Button/Button'
 
 const RegisterUser = gql`
   mutation AddNewUser(
-    $email: String!,  
-    $firstName: String!,
-    $lastName: String!,
-    $password: String!,
+    $email: String!
+    $firstName: String!
+    $lastName: String!
+    $password: String!
   ) {
     registerPerson(
       input: {
-        firstName: $firstName, 
-        lastName: $lastName, 
-        email: $email, 
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
         password: $password
       }
     ) {
       person {
-        firstName,
-        lastName,
+        firstName
+        lastName
         id
       }
     }
@@ -35,20 +36,25 @@ const RegisterUser = gql`
 
 const SuccessMessage = styled.p`
   font-weight: bold;
-  color: ${ ({ theme }) => theme.status.ok };
+  color: ${({ theme }) => theme.status.ok};
 `
 
 const Registration = () => {
   const modalContext = useContext(ModalContext)
-  const [registerUserResult, registerUser] = useMutation(RegisterUser);
+  const [registerUserResult, registerUser] = useMutation(RegisterUser)
   const [error, setError] = useState<string | null>(null)
 
-  const register = (values: FormikValues, { /*setSubmitting*/ }) => {
+  const register = (
+    values: FormikValues,
+    {
+      /*setSubmitting*/
+    },
+  ) => {
     registerUser(values).then(result => {
       if (result.error) {
-        console.error('Oh no!', result.error);
+        console.error('Oh no!', result.error)
       }
-    });
+    })
   }
 
   useEffect(() => {
@@ -56,63 +62,94 @@ const Registration = () => {
     if (error != null) {
       setError('Email already used.')
     } else if (data != null && data.registerPerson != null) {
-      modalContext.openLoginModal({ message: <SuccessMessage>Account successfully created.</SuccessMessage> })
+      modalContext.openLoginModal({
+        message: <SuccessMessage>Account successfully created.</SuccessMessage>,
+      })
     }
   }, [registerUserResult])
 
   interface IDictionary<TValue> {
-    [id: string]: TValue;
+    [id: string]: TValue
   }
 
-  const rowStyle : React.CSSProperties = { width: '50%', boxSizing: 'border-box' }
+  const rowStyle: React.CSSProperties = {
+    width: '50%',
+    boxSizing: 'border-box',
+  }
 
-  return <Modal width="480" title="CONNECT IN">
-    <p style={{ textAlign: 'center', color: 'grey' }}>Use imaginary info for all i care ...</p>
-    <Formik
-      initialValues={{
-        email: '',
-        firstName: '',
-        lastName: '',
-        password: '',
-        passwordConfirmation: ''
-      }}
-      validate={values => {
-        const errors : IDictionary<string> = {};
-        if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address';
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        register(values, { setSubmitting })
-        setSubmitting(false)
-      }}
-    >
-      {({ isSubmitting }) => <Form style={{ padding: '1em' }}>
-        <FormField required name="email" type="email" label="E-mail" />
-        <FlexRow>
-          <FormField required name="firstName" label="First name" style={{...rowStyle, paddingRight: '.5em' }} />
-          <FormField required name="lastName" label="Last name" style={{...rowStyle, paddingLeft: '.5em' }} />
-        </FlexRow>
-        <FlexRow style={{ margin: '1em 0 2em' }}>
-          <FormField required name="password" type="password" label="Password" style={{...rowStyle, paddingRight: '.5em' }} />
-          <FormField required name="passwordConfirmation" type="password" label="Repeat password" style={{...rowStyle, paddingLeft: '.5em' }} />
-        </FlexRow>
-        <FlexColumn>
-          <Button type="submit" disabled={isSubmitting}>
-            REGISTER
-          </Button>
-        </FlexColumn>
-        { error && <p color="red">{error} Try again :)</p>}
-        <p>* All fields are required.</p>
-      </Form>}
-    </Formik>
-  </Modal>
+  return (
+    <Modal width="480" title="CONNECT IN">
+      <p style={{ textAlign: 'center', color: 'grey' }}>
+        Use imaginary info for all i care ...
+      </p>
+      <Formik
+        initialValues={{
+          email: '',
+          firstName: '',
+          lastName: '',
+          password: '',
+          passwordConfirmation: '',
+        }}
+        validate={values => {
+          const errors: IDictionary<string> = {}
+          if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            errors.email = 'Invalid email address'
+          }
+          return errors
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          register(values, { setSubmitting })
+          setSubmitting(false)
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form style={{ padding: '1em' }}>
+            <FormField required name="email" type="email" label="E-mail" />
+            <FlexRow>
+              <FormField
+                required
+                name="firstName"
+                label="First name"
+                style={{ ...rowStyle, paddingRight: '.5em' }}
+              />
+              <FormField
+                required
+                name="lastName"
+                label="Last name"
+                style={{ ...rowStyle, paddingLeft: '.5em' }}
+              />
+            </FlexRow>
+            <FlexRow style={{ margin: '1em 0 2em' }}>
+              <FormField
+                required
+                name="password"
+                type="password"
+                label="Password"
+                style={{ ...rowStyle, paddingRight: '.5em' }}
+              />
+              <FormField
+                required
+                name="passwordConfirmation"
+                type="password"
+                label="Repeat password"
+                style={{ ...rowStyle, paddingLeft: '.5em' }}
+              />
+            </FlexRow>
+            <FlexColumn>
+              <Button type="submit" disabled={isSubmitting}>
+                REGISTER
+              </Button>
+            </FlexColumn>
+            {error && <p color="red">{error} Try again :)</p>}
+            <p>* All fields are required.</p>
+          </Form>
+        )}
+      </Formik>
+    </Modal>
+  );
 }
 
 export default withUrqlClient((_ssrExchange, ctx) => ({
   // ...add your Client options here
-  url: 'http://174.138.11.146:5433/graphql',
+  url: 'http://localhost:5433/graphql',
 }))(Registration)

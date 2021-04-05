@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react';
 import Frame, { IFrame } from '../Frame/Frame'
 import WindowTitleBar from '../WindowTitleBar/WindowTitleBar'
 

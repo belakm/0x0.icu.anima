@@ -1,14 +1,14 @@
 import Page from '../components/skeleton/Page'
-import Gallery from '../components/gallery/Gallery'
+import Cms from '../components/cms/Cms'
 import { withUrqlClient } from 'next-urql'
 
-const Index = () => (
+const Manager = () => (
   <Page
-    metaTitle="0x0_KERNEL_PANIC"
-    title="0w0, what is this?"
-    description="Check these out!!!!!!!!"
+    metaTitle="0x0_CONTENT_MANAGEMENT.SYS"
+    title="0x0_CONTENT_MANAGEMENT.SYS"
+    description=""
   >
-    <Gallery />
+    <Cms />
   </Page>
 )
 
@@ -18,4 +18,4 @@ export default withUrqlClient((_ssrExchange, ctx) => ({
   fetchOptions: () => {
     return {}
   },
-}))(Index)
+}))(Manager)

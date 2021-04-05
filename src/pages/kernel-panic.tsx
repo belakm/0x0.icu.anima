@@ -1,5 +1,5 @@
+import KernelPanic from '../components/kernel-panic/KernelPanic'
 import Page from '../components/skeleton/Page'
-import Store from '../components/store/Store'
 
 const Index = () => (
   <Page
@@ -8,7 +8,7 @@ const Index = () => (
     meta-title="Sitri store"
     meta-description="Sitri's store shirts and art for sale"
   >
-    <Store />
+    <KernelPanic />
   </Page>
 )
 

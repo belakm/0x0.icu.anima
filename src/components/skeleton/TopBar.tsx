@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { FlexRow } from '../common/Flex'
 import Wrapper from '../gallery/Wrapper'
@@ -7,12 +6,16 @@ import LinkButton from '../Win95/Button/LinkButton'
 
 const links = [
   {
-    name: 'my CREATIONS',
-    href: '/',
+    name: 'KERNEL_PANIC',
+    href: '/kernel-panic',
   },
   {
-    name: 'good SHIT',
+    name: 'SITRI',
     href: '/store',
+  },
+  {
+    name: 'ABOUT US',
+    href: '/about',
   },
 ]
 
@@ -27,20 +30,22 @@ const TopBarStyled = styled.nav`
 `
 
 const TopBar = () => {
-  return <TopBarStyled>
-  <Wrapper>
-    <FlexRow>
-      <FlexRow grow={1}>
-        {links.map(({ name, href }, index) => (
-          <LinkButton key={index} href={href}>{name}</LinkButton>
-        ))}
-      </FlexRow>
-      <User />
-    </FlexRow>
-  </Wrapper>
-</TopBarStyled>
+  return (
+    <TopBarStyled>
+      <Wrapper>
+        <FlexRow>
+          <FlexRow grow={1}>
+            {links.map(({ name, href }, index) => (
+              <LinkButton key={index} href={href}>
+                {name}
+              </LinkButton>
+            ))}
+          </FlexRow>
+          <User />
+        </FlexRow>
+      </Wrapper>
+    </TopBarStyled>
+  )
 }
-  
-
 
 export default TopBar

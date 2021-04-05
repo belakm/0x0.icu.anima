@@ -1,6 +1,6 @@
-import React, { createContext, useState, useEffect, useContext } from 'react'
-import { gql, useQuery } from 'urql'
-import UrqlProvider from '../components/graphql/UrqlProvider'
+import { createContext, useState, useEffect, useContext } from 'react';
+import { createClient, gql } from 'urql'
+import { urqlSettings } from '../components/graphql/UrqlProvider'
 
 const FetchUser = gql`
   query FetchUser {
@@ -31,6 +31,7 @@ interface IAuthContext {
   user: IUser | null
   setUser: Function
   isLoggedIn: boolean
+  logout: Function
 }
 
 export const AuthContext = createContext<IAuthContext>({
@@ -39,62 +40,64 @@ export const AuthContext = createContext<IAuthContext>({
   user: null,
   setUser: () => {},
   isLoggedIn: false,
+  logout: () => {},
 })
-
-const FetcherComponent = () => {
-  const authContext = useContext(AuthContext)
-  const [userData, fetchUser] = useQuery({ query: FetchUser })
-
-  // set or fetch user
-  useEffect(() => {
-    console.log('USER DATA', userData)
-    const { data } = userData
-    if (data == null && authContext.token != null) {
-      fetchUser()
-    } else if (data != null) {
-      const { currentPerson } = data
-      authContext.setUser(currentPerson)
-    }
-  }, [userData])
-
-  return <></>
-}
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [token, setToken] = useState<string | null>(null)
   const [isLoggedIn, setLoggedIn] = useState<boolean>(false)
   const [user, setUser] = useState<IUser | null>(null)
+  const authContext = useContext(AuthContext)
   const authProvider = {
     isLoggedIn,
     token,
     setToken,
     user,
     setUser,
+    logout: () => {
+      setUser(null)
+      setToken(null)
+      localStorage.removeItem('token')
+    },
   }
+
+  const urqlClient = createClient({
+    ...urqlSettings,
+    fetchOptions: () => {
+      return {
+        headers: { authorization: token ? `Bearer ${token}` : '' },
+      }
+    },
+  })
 
   // fetch token
   useEffect(() => {
     if (token != null) {
-      setLoggedIn(true)
       localStorage.setItem('token', token)
+      urqlClient
+        .query(FetchUser)
+        .toPromise()
+        .then(result => {
+          console.log('RESULT', result)
+          const { data } = result
+          if (data && data.currentPerson) {
+            setUser(data.currentPerson)
+            setLoggedIn(true)
+          }
+        })
     } else {
       const savedToken = localStorage.getItem('token')
       if (savedToken != null) {
         setToken(savedToken)
-        setLoggedIn(true)
       } else {
+        setToken(null)
         setLoggedIn(false)
       }
     }
   }, [token])
 
   return (
-    <AuthContext.Provider value={authProvider}>
-      <UrqlProvider>
-        <FetcherComponent />
-      </UrqlProvider>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authProvider}>{children}</AuthContext.Provider>
   )
 }
 

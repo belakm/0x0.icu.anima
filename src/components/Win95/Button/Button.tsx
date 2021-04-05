@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react';
 import styled from 'styled-components'
 import { border } from '../Border'
 
@@ -45,7 +45,7 @@ const Button = ({
 }
 
 Button.defaultProps = {
-  children: 'Ok',
+  children: 'EMPTY',
   fontSize: '12px',
 }
 

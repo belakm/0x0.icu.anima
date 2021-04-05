@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import GalleryImage from './GalleryImage'
 import { FlexColumn, FlexRow } from '../common/Flex'
 import { gql, useQuery } from 'urql';

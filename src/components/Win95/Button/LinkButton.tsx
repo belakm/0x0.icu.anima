@@ -1,20 +1,23 @@
 import Link from 'next/link'
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react';
+import * as React from 'react';
 import Button from './Button'
 
 interface ILinkButton {
-  children: React.ReactNode,
-  href: string,
+  children: React.ReactNode
+  href: string
 }
 
-const LinkButton = forwardRef(({ children, href } : ILinkButton, ref: React.Ref<HTMLAnchorElement>) => {
-  return <Link href={href} passHref>
-    <a href={href} ref={ref}>
-      <Button>
-        {children}
-      </Button>
-    </a>
-  </Link>
-})
+const LinkButton = forwardRef(
+  ({ children, href }: ILinkButton, ref: React.Ref<HTMLAnchorElement>) => {
+    return (
+      <Link href={href} passHref>
+        <a href={href} ref={ref}>
+          <Button>{children}</Button>
+        </a>
+      </Link>
+    )
+  },
+)
 
 export default LinkButton

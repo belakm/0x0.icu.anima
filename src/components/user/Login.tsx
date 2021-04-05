@@ -1,5 +1,6 @@
 import { Form, Formik, FormikValues } from 'formik'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react';
+import * as React from 'react';
 import { gql, useMutation } from 'urql'
 import AuthContext from '../../contexts/AuthContext'
 import ModalContext from '../../contexts/ModalContext'
@@ -31,7 +32,6 @@ const Login = ({ message }: ILogin) => {
 
   useEffect(() => {
     const { error, data } = signInResult
-    console.log(signInResult)
     if (error != null) {
       setError('Incorrect credentials.')
     } else if (data != null) {
@@ -44,17 +44,22 @@ const Login = ({ message }: ILogin) => {
   ) => {
     setSubmitting(true)
     signIn(values).then(result => {
+      console.log(result)
       setSubmitting(false)
       if (result.error) {
-        console.error('Oh no!', result.error)
+        setError('Incorrect credentials.')
       } else {
         const {
           data: {
             authenticate: { jwtToken },
           },
         } = result
-        authContext.setToken(jwtToken)
-        modalContext.closeAllModals()
+        if (jwtToken == null) {
+          setError('Incorrect credentials.')
+        } else {
+          authContext.setToken(jwtToken)
+          modalContext.closeAllModals()
+        }
       }
     })
   }
