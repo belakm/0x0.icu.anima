@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react'
 import { createClient, gql } from 'urql'
 import { urqlSettings } from '../components/graphql/UrqlProvider'
 
@@ -47,7 +47,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [token, setToken] = useState<string | null>(null)
   const [isLoggedIn, setLoggedIn] = useState<boolean>(false)
   const [user, setUser] = useState<IUser | null>(null)
-  const authContext = useContext(AuthContext)
   const authProvider = {
     isLoggedIn,
     token,
@@ -79,8 +78,10 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         .toPromise()
         .then(result => {
           console.log('RESULT', result)
-          const { data } = result
-          if (data && data.currentPerson) {
+          const { data, error } = result
+          if (error) {
+            authProvider.logout()
+          } else if (data && data.currentPerson) {
             setUser(data.currentPerson)
             setLoggedIn(true)
           }

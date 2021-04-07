@@ -1,24 +1,19 @@
-import { gql, useQuery } from 'urql'
+import { useRouter } from 'next/dist/client/router'
+import Window from '../Win95/Window/Window'
+import CmsNft from './CmsNft'
+import CmsPortfolio from './CmsPortfolio'
 
-const FetchPosts = gql`
-  allPosts {
-    nodes {
-      authorId
-      body
-      createdAt
-      headline
-      id
-      personByAuthorId {
-        id
-        fullName
-      }
-      summary(length: 300, omission: "")
-      topic
-      updatedAt
-    }
-  }
-`
-
-const Cms = () => {}
+const Cms = () => {
+  const {
+    query: { type },
+  } = useRouter()
+  return type == 'portfolio' ? (
+    <CmsPortfolio />
+  ) : type == 'nft' ? (
+    <CmsNft />
+  ) : (
+    <Window title="nah.exe">Check your url, the route is wrong.</Window>
+  )
+}
 
 export default Cms

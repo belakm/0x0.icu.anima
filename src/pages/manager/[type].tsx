@@ -1,6 +1,6 @@
-import Page from '../components/skeleton/Page'
-import Cms from '../components/cms/Cms'
+import Page from '../../components/skeleton/Page'
 import { withUrqlClient } from 'next-urql'
+import Cms from '../../components/cms/Cms'
 
 const Manager = () => (
   <Page

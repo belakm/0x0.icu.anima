@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react'
 import AuthContext from '../../contexts/AuthContext'
 import ModalContext from '../../contexts/ModalContext'
 import Dropdown from '../common/Dropdown'
@@ -28,7 +28,7 @@ const User = () => {
             },
             {
               text: 'CV Manager',
-              link: 'manager/cv',
+              link: '/manager/portfolio',
             },
           ]}
         />
