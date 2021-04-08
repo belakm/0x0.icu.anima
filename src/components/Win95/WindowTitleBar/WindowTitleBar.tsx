@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import * as React from 'react';
+import { useState } from 'react'
 import styled from 'styled-components'
 import { StyledButton } from '../Button/Button'
 

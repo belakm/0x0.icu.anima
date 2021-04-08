@@ -12,24 +12,25 @@ export interface IField {
   style?: CSSProperties
 }
 
-export interface IForm {
+export interface IForm<T> {
   fields: IField[]
-  onSubmit: (values: Object) => void
+  onSubmit?: (values: T) => void
+  textSubmit: string
+  initialValues: T
 }
 
-const Form = ({ fields, onSubmit }: IForm) => {
+const Form = <T,>({
+  fields,
+  onSubmit,
+  textSubmit,
+  initialValues,
+}: IForm<T>) => {
   const [error, setError] = useState<string | null>(null)
   return (
     <Formik
-      initialValues={fields.reduce(
-        (initialValues, { type, name }) => ({
-          ...initialValues,
-          [name]: type == 'string' ? '' : null,
-        }),
-        {},
-      )}
+      initialValues={initialValues}
       onSubmit={(values, { setSubmitting }) => {
-        onSubmit(values)
+        onSubmit ? onSubmit(values) : null
         setSubmitting(false)
       }}
     >
@@ -46,7 +47,7 @@ const Form = ({ fields, onSubmit }: IForm) => {
           ))}
           <FlexColumn style={{ marginTop: '1em' }}>
             <Button type="submit" disabled={isSubmitting}>
-              REGISTER
+              {textSubmit}
             </Button>
           </FlexColumn>
           {error && <p color="red">{error} Try again :)</p>}

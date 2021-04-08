@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { FlexRow } from '../common/Flex'
-import Wrapper from '../gallery/Wrapper'
+import Wrapper from '../common/Wrapper'
 import User from '../user/User'
 import LinkButton from '../Win95/Button/LinkButton'
 

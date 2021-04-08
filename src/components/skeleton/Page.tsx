@@ -1,9 +1,8 @@
-import * as React from 'react';
 import Head from 'next/head'
 import Background from './Background'
 import BrandTop from './BrandTop'
 import TopBar from './TopBar'
-import Wrapper from '../gallery/Wrapper'
+import Wrapper from '../common/Wrapper'
 import styled from 'styled-components'
 import Footer from './Footer'
 

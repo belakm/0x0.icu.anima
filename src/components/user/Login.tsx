@@ -1,6 +1,5 @@
 import { Form, Formik, FormikValues } from 'formik'
-import { useContext, useEffect, useState } from 'react';
-import * as React from 'react';
+import { useContext, useEffect, useState } from 'react'
 import { gql, useMutation } from 'urql'
 import AuthContext from '../../contexts/AuthContext'
 import ModalContext from '../../contexts/ModalContext'

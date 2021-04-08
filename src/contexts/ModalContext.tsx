@@ -1,5 +1,4 @@
-import { createContext, useState } from 'react';
-import * as React from 'react';
+import { createContext, useState } from 'react'
 import styled from 'styled-components'
 import { FlexColumn } from '../components/common/Flex'
 import UrqlProvider from '../components/graphql/UrqlProvider'

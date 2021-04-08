@@ -1,13 +1,11 @@
-import * as React from 'react';
+import { ReactNode } from 'react'
 
 interface IFormError {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-const FormError = ({ children } : IFormError) => {
-  return <p style={{ color: 'red' }}>
-    {children}
-  </p>
+const FormError = ({ children }: IFormError) => {
+  return <p style={{ color: 'red' }}>{children}</p>
 }
 
 export default FormError

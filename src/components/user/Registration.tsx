@@ -1,7 +1,6 @@
 import { Form, Formik, FormikValues } from 'formik'
 import { withUrqlClient } from 'next-urql'
-import { useContext, useEffect, useState } from 'react';
-import * as React from 'react';
+import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { gql, useMutation } from 'urql'
 import ModalContext from '../../contexts/ModalContext'
@@ -146,7 +145,7 @@ const Registration = () => {
         )}
       </Formik>
     </Modal>
-  );
+  )
 }
 
 export default withUrqlClient((_ssrExchange, ctx) => ({

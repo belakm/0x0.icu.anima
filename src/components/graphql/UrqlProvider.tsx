@@ -1,5 +1,4 @@
-import { useContext } from 'react';
-import * as React from 'react';
+import { useContext } from 'react'
 import { createClient, Provider } from 'urql'
 import AuthContext from '../../contexts/AuthContext'
 

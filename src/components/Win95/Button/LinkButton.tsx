@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { forwardRef } from 'react';
-import * as React from 'react';
+import { forwardRef } from 'react'
+
 import Button from './Button'
 
 interface ILinkButton {

@@ -1,5 +1,5 @@
 import Frame from '../Win95/Frame/Frame'
-import Wrapper from '../gallery/Wrapper'
+import Wrapper from '../common/Wrapper'
 import { FlexRow } from '../common/Flex'
 
 const Footer = () => (
