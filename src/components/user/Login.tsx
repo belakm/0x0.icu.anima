@@ -43,7 +43,6 @@ const Login = ({ message }: ILogin) => {
   ) => {
     setSubmitting(true)
     signIn(values).then(result => {
-      console.log(result)
       setSubmitting(false)
       if (result.error) {
         setError('Incorrect credentials.')

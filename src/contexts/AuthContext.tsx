@@ -77,7 +77,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         .query(FetchUser)
         .toPromise()
         .then(result => {
-          console.log('RESULT', result)
           const { data, error } = result
           if (error) {
             authProvider.logout()

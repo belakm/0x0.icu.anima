@@ -1,7 +1,9 @@
+import { withUrqlClient } from 'next-urql'
 import KernelPanic from '../components/kernel-panic/KernelPanic'
 import Page from '../components/skeleton/Page'
+import clientOptions from '../urql/client'
 
-const Index = () => (
+const PageKernelPanic = () => (
   <Page
     title="My merch"
     description="no touching"
@@ -12,4 +14,6 @@ const Index = () => (
   </Page>
 )
 
-export default Index
+export default withUrqlClient((_ssrExchange, ctx) => clientOptions)(
+  PageKernelPanic,
+)

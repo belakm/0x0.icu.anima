@@ -1,7 +1,9 @@
+import { withUrqlClient } from 'next-urql'
 import Page from '../components/skeleton/Page'
 import Store from '../components/store/Store'
+import clientOptions from '../urql/client'
 
-const Index = () => (
+const PageStore = () => (
   <Page
     title="My merch"
     description="no touching"
@@ -12,4 +14,4 @@ const Index = () => (
   </Page>
 )
 
-export default Index
+export default withUrqlClient((_ssrExchange, ctx) => clientOptions)(PageStore)

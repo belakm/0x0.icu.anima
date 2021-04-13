@@ -1,6 +1,7 @@
 import Page from '../../components/skeleton/Page'
 import { withUrqlClient } from 'next-urql'
 import Cms from '../../components/cms/Cms'
+import clientOptions from '../../urql/client'
 
 const Manager = () => (
   <Page
@@ -12,10 +13,4 @@ const Manager = () => (
   </Page>
 )
 
-export default withUrqlClient((_ssrExchange, ctx) => ({
-  // ...add your Client options here
-  url: 'http://localhost:5433/graphql',
-  fetchOptions: () => {
-    return {}
-  },
-}))(Manager)
+export default withUrqlClient((_ssrExchange, ctx) => clientOptions)(Manager)

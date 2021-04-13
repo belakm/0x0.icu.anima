@@ -1,6 +1,7 @@
 import Page from '../components/skeleton/Page'
 import Gallery from '../components/gallery/Gallery'
 import { withUrqlClient } from 'next-urql'
+import clientOptions from '../urql/client'
 
 const Index = () => (
   <Page
@@ -12,10 +13,4 @@ const Index = () => (
   </Page>
 )
 
-export default withUrqlClient((_ssrExchange, ctx) => ({
-  // ...add your Client options here
-  url: 'http://localhost:5433/graphql',
-  fetchOptions: () => {
-    return {}
-  },
-}))(Index)
+export default withUrqlClient((_ssrExchange, ctx) => clientOptions)(Index)
