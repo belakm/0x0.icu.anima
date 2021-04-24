@@ -14,9 +14,9 @@ type IPage = {
   metaDescription?: string
 }
 
-const MainWrapper = styled(Wrapper)`
-  padding: 5em 0 3em;
-  min-height: calc(100vh - 11em);
+const PageWrapper = styled(Wrapper)`
+  padding-top: 3em;
+  padding-bottom: 2em;
 `
 
 const Page: React.FunctionComponent<IPage> = ({
@@ -32,10 +32,14 @@ const Page: React.FunctionComponent<IPage> = ({
       <meta name="description" content={metaDescription} />
     </Head>
     <TopBar />
-    <MainWrapper>
-      <BrandTop title={title} description={description} />
+    <PageWrapper>
+      <BrandTop
+        title={title}
+        description={description}
+        style={{ marginBottom: '3em' }}
+      />
       {children}
-    </MainWrapper>
+    </PageWrapper>
     <Footer />
     <Background />
   </main>

@@ -29,22 +29,30 @@ const TopBarStyled = styled.nav`
   padding: 0.5em 0;
 `
 
+const TopBarPadding = styled.div`
+  width: 100%;
+  height: 3em;
+`
+
 const TopBar = () => {
   return (
-    <TopBarStyled>
-      <Wrapper>
-        <FlexRow>
-          <FlexRow grow={1}>
-            {links.map(({ name, href }, index) => (
-              <LinkButton key={index} href={href}>
-                {name}
-              </LinkButton>
-            ))}
+    <>
+      <TopBarPadding />
+      <TopBarStyled>
+        <Wrapper>
+          <FlexRow>
+            <FlexRow grow={1}>
+              {links.map(({ name, href }, index) => (
+                <LinkButton key={index} href={href}>
+                  {name}
+                </LinkButton>
+              ))}
+            </FlexRow>
+            <User />
           </FlexRow>
-          <User />
-        </FlexRow>
-      </Wrapper>
-    </TopBarStyled>
+        </Wrapper>
+      </TopBarStyled>
+    </>
   )
 }
 

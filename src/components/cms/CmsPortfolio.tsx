@@ -3,6 +3,7 @@ import { gql, useMutation, useQuery } from 'urql'
 import AuthContext from '../../contexts/AuthContext'
 import Form from '../form/Form'
 import Window from '../Win95/Window/Window'
+import CmsGrid from './CmsGrid'
 import CmsPortfolioItem, { ICmsPorfolioItem } from './CmsPortfolioItem'
 
 const FetchCVPosts = gql`
@@ -132,7 +133,7 @@ const CmsPortfolio = () => {
 
   return (
     <>
-      <Window title="SUBMIT YOUR WISH">
+      <Window title="SUBMIT YOUR WISH" style={{ marginBottom: '2em' }}>
         <Form
           onSuccess={() => fetchAllPosts()}
           onSubmit={async ({ body, headline, media, topic }) => {
@@ -173,8 +174,8 @@ const CmsPortfolio = () => {
           initialValues={initialValues}
         />
       </Window>
-      <div>
-        {allPosts.data?.allPosts.nodes.map(
+      <CmsGrid
+        elements={allPosts.data?.allPosts.nodes.map(
           ({ body, createdAt, headline, id, media, mediaType, updatedAt }) => (
             <CmsPortfolioItem
               key={id}
@@ -188,7 +189,7 @@ const CmsPortfolio = () => {
             />
           ),
         )}
-      </div>
+      />
     </>
   )
 }

@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react'
 import styled, { css } from 'styled-components'
 import { FlexRow } from '../common/Flex'
 
@@ -106,10 +107,11 @@ const LogoSubTitle = styled.span`
 interface IBrandTop {
   title: string
   description: string
+  style?: CSSProperties
 }
-const BrandTop = ({ title, description }: IBrandTop) => {
+const BrandTop = ({ title, description, style }: IBrandTop) => {
   return (
-    <section>
+    <section style={style}>
       <FlexRow align="start end">
         <LogoTitle>0x0</LogoTitle>
         <LogoSubTitle>
