@@ -1,5 +1,15 @@
+import { gql } from '@urql/core'
 import styled from 'styled-components'
+import { useMutation } from 'urql'
 import Window, { WindowWrapper } from '../Win95/Window/Window'
+
+const DeleteItem = gql`
+  mutation MyMutation($id: Int!) {
+    deletePostById(input: { id: $id }) {
+      deletedPostId
+    }
+  }
+`
 
 export interface ICmsPorfolioItem {
   body: string
@@ -9,6 +19,7 @@ export interface ICmsPorfolioItem {
   media: string
   mediaType: string
   updatedAt: string
+  reload: Function
 }
 
 const ImageViewer = styled.div`
@@ -32,9 +43,30 @@ const CmsPortfolioItem = ({
   media,
   mediaType,
   updatedAt,
+  reload,
 }: ICmsPorfolioItem) => {
+  const [deleteItemResult, deleteItem] = useMutation(DeleteItem)
+
+  const deleteItemFn = () => {
+    deleteItem({ id }).then(({ error }) => {
+      if (error) {
+        console.log(error)
+      } else {
+        reload()
+      }
+    })
+  }
+
   return (
-    <Window title={headline}>
+    <Window
+      title={headline}
+      options={[
+        {
+          text: 'X',
+          fn: deleteItemFn,
+        },
+      ]}
+    >
       <WindowWrapper>
         <h3>{headline}</h3>
         <ImageViewer>

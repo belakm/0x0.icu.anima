@@ -8,6 +8,7 @@ import { FlexColumn, FlexRow } from '../common/Flex'
 import Modal from '../common/Modal'
 import FormField from '../form/FormField'
 import Button from '../Win95/Button/Button'
+import { API_GRAPHQL } from '../../../env/env'
 
 const RegisterUser = gql`
   mutation AddNewUser(
@@ -150,5 +151,5 @@ const Registration = () => {
 
 export default withUrqlClient((_ssrExchange, ctx) => ({
   // ...add your Client options here
-  url: 'http://localhost:5433/graphql',
+  url: API_GRAPHQL,
 }))(Registration)

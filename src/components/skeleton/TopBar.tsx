@@ -3,6 +3,7 @@ import { FlexRow } from '../common/Flex'
 import Wrapper from '../common/Wrapper'
 import User from '../user/User'
 import LinkButton from '../Win95/Button/LinkButton'
+import Logo from './Logo'
 
 const links = [
   {
@@ -27,11 +28,13 @@ const TopBarStyled = styled.nav`
   border-bottom: 2px dashed ${({ theme }) => theme.win95.materialText};
   width: 100%;
   padding: 0.5em 0;
+  height: 60px;
+  box-sizing: border-box;
 `
 
 const TopBarPadding = styled.div`
   width: 100%;
-  height: 3em;
+  height: 60px;
 `
 
 const TopBar = () => {
@@ -41,6 +44,7 @@ const TopBar = () => {
       <TopBarStyled>
         <Wrapper>
           <FlexRow>
+            <Logo>0x0</Logo>
             <FlexRow grow={1}>
               {links.map(({ name, href }, index) => (
                 <LinkButton key={index} href={href}>

@@ -20,7 +20,9 @@ const CmsGrid = ({ elements }: CmsGrid) => {
   return (
     <StyledGrid>
       {elements &&
-        elements.map(e => <StyledGridElement>{e}</StyledGridElement>)}
+        elements.map((e, index) => (
+          <StyledGridElement key={index}>{e}</StyledGridElement>
+        ))}
     </StyledGrid>
   )
 }

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { gql, useMutation, useQuery } from 'urql'
 import AuthContext from '../../contexts/AuthContext'
 import Form from '../form/Form'
@@ -87,11 +87,17 @@ interface IFetchedPosts {
 const CmsPortfolio = () => {
   const [allPosts, fetchAllPosts] = useQuery<IFetchedPosts>({
     query: FetchCVPosts,
+    requestPolicy: 'network-only',
   })
+  const [posts, setPosts] = useState<ICmsPorfolioItem[]>()
   const [submittedPost, submitPost] = useMutation(SubmitPost)
   const authContext = useContext(AuthContext)
 
-  useEffect(console.log, [allPosts])
+  useEffect(() => {
+    if (allPosts.data) {
+      setPosts(allPosts.data.allPosts.nodes)
+    }
+  }, [allPosts])
 
   const formFields = [
     {
@@ -128,7 +134,7 @@ const CmsPortfolio = () => {
     body: '',
     headline: '',
     media: '',
-    topic: '',
+    topic: 'KERNEL_PANIC',
   }
 
   return (
@@ -174,22 +180,35 @@ const CmsPortfolio = () => {
           initialValues={initialValues}
         />
       </Window>
-      <CmsGrid
-        elements={allPosts.data?.allPosts.nodes.map(
-          ({ body, createdAt, headline, id, media, mediaType, updatedAt }) => (
-            <CmsPortfolioItem
-              key={id}
-              body={body}
-              createdAt={createdAt}
-              headline={headline}
-              id={id}
-              media={media}
-              mediaType={mediaType}
-              updatedAt={updatedAt}
-            />
-          ),
-        )}
-      />
+      {posts ? (
+        <CmsGrid
+          elements={posts.map(
+            ({
+              body,
+              createdAt,
+              headline,
+              id,
+              media,
+              mediaType,
+              updatedAt,
+            }) => (
+              <CmsPortfolioItem
+                key={id}
+                body={body}
+                createdAt={createdAt}
+                headline={headline}
+                id={id}
+                media={media}
+                mediaType={mediaType}
+                updatedAt={updatedAt}
+                reload={() => fetchAllPosts()}
+              />
+            ),
+          )}
+        />
+      ) : (
+        <p>Loading ...</p>
+      )}
     </>
   )
 }

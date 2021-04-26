@@ -1,18 +1,19 @@
 import { dedupExchange, cacheExchange, fetchExchange, makeOperation } from 'urql';
 import { authExchange } from '@urql/exchange-auth';
+import { API_GRAPHQL } from '../../env/env'
 
 interface IAuth {
   token: string
 }
 
 const clientOptions = {
-  url: 'http://localhost:5433/graphql',
+  url: API_GRAPHQL,
   exchanges: [
     dedupExchange,
     cacheExchange,
     authExchange<IAuth>({
       getAuth: async ({ authState }) => {
-        if (!authState) {
+        if (!authState && typeof localStorage != 'undefined') {
           const token = localStorage.getItem('token');
           const refreshToken = localStorage.getItem('refreshToken');
           if (token && refreshToken) {

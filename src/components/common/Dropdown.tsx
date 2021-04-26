@@ -1,13 +1,12 @@
-import Link from 'next/link'
 import { useState } from 'react'
 import styled from 'styled-components'
-import { UrlObject } from 'url'
 import Button from '../Win95/Button/Button'
+import LinkButton from '../Win95/Button/LinkButton'
 
 interface IDropdownItem {
   text: String
   fn?: Function
-  link?: string | UrlObject
+  link?: string
 }
 
 interface IDropdown {
@@ -34,11 +33,6 @@ const DropdownItem = styled.li`
   width: 100%;
 `
 
-const wrapWithLink = (
-  el: React.ReactElement,
-  link: string | UrlObject | undefined,
-) => (link ? <Link href={link}>{el}</Link> : el)
-
 const Dropdown = ({ items, text }: IDropdown) => {
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false)
   return (
@@ -54,14 +48,17 @@ const Dropdown = ({ items, text }: IDropdown) => {
         <DropdownList>
           {items.map(({ text, fn, link }, index) => (
             <DropdownItem key={index}>
-              {wrapWithLink(
+              {link ? (
+                <LinkButton style={{ width: '100%' }} href={link}>
+                  {text}
+                </LinkButton>
+              ) : (
                 <Button
                   style={{ width: '100%' }}
                   onClick={() => (fn ? fn() : null)}
                 >
                   {text}
-                </Button>,
-                link,
+                </Button>
               )}
             </DropdownItem>
           ))}

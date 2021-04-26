@@ -3,7 +3,7 @@ import Wrapper from '../common/Wrapper'
 import { FlexRow } from '../common/Flex'
 
 const Footer = () => (
-  <Frame style={{ padding: '1em 0' }}>
+  <Frame style={{ padding: '1em 0', height: 60, boxSizing: 'border-box' }}>
     <Wrapper>
       <FlexRow align="center center">
         Copyright @ 2020 - Nina Belak, Mitja Belak (

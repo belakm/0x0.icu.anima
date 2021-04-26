@@ -36,7 +36,7 @@ const Frame = styled.section<IFrame>`
   padding: 3px;
   display: flex;
   flex-direction: ${({ direction }) => direction};
-  font-family: 'win95';
+  font-family: 'Space mono', monospace;
 `
 Frame.defaultProps = {
   width: 'auto',

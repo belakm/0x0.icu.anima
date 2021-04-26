@@ -1,13 +1,14 @@
 import { useContext } from 'react'
 import { createClient, Provider } from 'urql'
 import AuthContext from '../../contexts/AuthContext'
+import { API_GRAPHQL } from '../../../env/env'
 
 interface IUrqlProvider {
   children: React.ReactNode
 }
 
 export const urqlSettings = {
-  url: 'http://localhost:5433/graphql',
+  url: API_GRAPHQL,
 }
 
 const UrqlProvider = ({ children }: IUrqlProvider) => {
