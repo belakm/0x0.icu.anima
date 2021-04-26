@@ -1,4 +1,3 @@
-import React from 'react'
 import Window from '../Win95/Window/Window'
 
 interface IGalleryImage {

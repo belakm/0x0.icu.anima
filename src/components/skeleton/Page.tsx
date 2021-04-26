@@ -1,9 +1,7 @@
-import React from 'react'
 import Head from 'next/head'
 import Background from './Background'
-import BrandTop from './BrandTop'
 import TopBar from './TopBar'
-import Wrapper from '../gallery/Wrapper'
+import Wrapper from '../common/Wrapper'
 import styled from 'styled-components'
 import Footer from './Footer'
 
@@ -15,9 +13,10 @@ type IPage = {
   metaDescription?: string
 }
 
-const MainWrapper = styled(Wrapper)`
-  padding: 5em 0 3em;
-  min-height: calc(100vh - 11em);
+const PageWrapper = styled(Wrapper)`
+  padding-top: 3em;
+  padding-bottom: 2em;
+  min-height: calc(100vh - 120px);
 `
 
 const Page: React.FunctionComponent<IPage> = ({
@@ -33,10 +32,7 @@ const Page: React.FunctionComponent<IPage> = ({
       <meta name="description" content={metaDescription} />
     </Head>
     <TopBar />
-    <MainWrapper>
-      <BrandTop title={title} description={description} />
-      {children}
-    </MainWrapper>
+    <PageWrapper>{children}</PageWrapper>
     <Footer />
     <Background />
   </main>

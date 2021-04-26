@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { ReactElement, useState } from 'react'
 import styled from 'styled-components'
 import { StyledButton } from '../Button/Button'
 
@@ -31,11 +31,18 @@ export const Option = styled(StyledButton)`
 
 Option.displayName = 'Option'
 
-interface TitleBarProps {
+export interface ITitleBarOption {
+  fn?: Function
+  text?: string
+  el?: ReactElement
+}
+
+export interface TitleBarProps {
   isActive?: boolean
   /*icon?: IconProps['name']*/
   className?: string
   title?: string
+  options?: ITitleBarOption[]
 }
 
 const TitleBarBackground = styled.div<{ isActive?: boolean }>`
@@ -58,7 +65,8 @@ const Title = styled.h1`
   font-weight: normal;
   line-height: 1.4em;
   margin: 0;
-  font-size: 0.6em;
+  font-size: 0.8em;
+  font-weight: 700;
   letter-spacing: 1px;
 `
 
@@ -67,15 +75,17 @@ const WindowTitleBar: React.FunctionComponent<TitleBarProps> = ({
   className,
   title,
   isActive,
+  options,
 }) => {
-  const [isOptionToggled, setOptionToggled] = useState(false)
-
   return (
     <TitleBarBackground isActive={isActive} className={className}>
       <Title>{title}</Title>
-      <Option onClick={() => setOptionToggled(true)}>
-        {isOptionToggled ? '♥' : '♡'}
-      </Option>
+      {options?.map(({ fn, text, el }, index) => (
+        <Option key={index} onClick={() => (fn ? fn() : null)}>
+          {el ? el : null}
+          {text ? text : null}
+        </Option>
+      ))}
       {children}
     </TitleBarBackground>
   )

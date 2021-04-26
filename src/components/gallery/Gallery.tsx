@@ -1,44 +1,47 @@
-import React, { useEffect, useState } from 'react'
-/*import imgsuccubus from '../../../public/images/art/succubus.jpg'
-import imgteszt from '../../../public/images/art/teszt.png'
-import imgwhateven from '../../../public/images/art/whateven.png'
-import imgsfinga from '../../../public/images/art/sfinga.png'
-import imgsitofinal from '../../../public/images/art/sitofinal.png'
-import imgstickers from '../../../public/images/art/stickers.png'
-import imgferretfinal from '../../../public/images/art/ferretfinal.png'
-import imgmalware from '../../../public/images/art/malware.png'
-import imgkissis from '../../../public/images/art/kissis.png'
-import imgmask from '../../../public/images/art/mask.png'
-import imgplague from '../../../public/images/art/plague.png'
-import imgespeon from '../../../public/images/art/espeon.jpg'
-import imgduo from '../../../public/images/art/duo.png'
-import imggrl from '../../../public/images/art/grl.png'
-import imgriotflower from '../../../public/images/art/riotflower.png'
-import imgroom from '../../../public/images/art/room.png'
-import imgdog from '../../../public/images/art/dog.png'
-import imgcabinfever from '../../../public/images/art/cabinfever.png'
-import imgalien from '../../../public/images/art/alien.png'
-import imgdt from '../../../public/images/art/dt.png'*/
+import { useEffect, useState } from 'react';
 import GalleryImage from './GalleryImage'
 import { FlexColumn, FlexRow } from '../common/Flex'
+import { gql, useQuery } from 'urql';
+
+const PostsQuery = gql`
+  query PostsQuery {
+    allPosts {
+      edges {
+        node {
+          id
+          body
+          createdAt
+          headline
+        }
+      }
+    }
+  }
+`;
 
 interface IGalleryImage {
   src: string
   title: string
 }
 
-const sitriImages: IGalleryImage[] = [
-  /*{
-    src: imgmask,
-    title: 'mask',
-  }*/
-]
+const sitriImages: IGalleryImage[] = []
 
 const Gallery = () => {
+
+  const [result, reexecuteQuery] = useQuery({
+    query: PostsQuery,
+  });
+
+  const { data, fetching, error } = result;
+  
   const [images, setImages] = useState<IGalleryImage[]>([])
+  
   useEffect(() => {
     setImages(sitriImages)
   }, [])
+
+  if (fetching) return <p>Loading...</p>;
+  if (error) return <p>Oh no... {error.message}</p>;
+
   return (
     <section>
       <FlexRow wrap="wrap" align="center">

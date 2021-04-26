@@ -1,5 +1,10 @@
-import React from 'react'
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
 export default class extends Document {
@@ -10,7 +15,7 @@ export default class extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) => (props) =>
+          enhanceApp: App => props =>
             // eslint-disable-next-line react/jsx-props-no-spreading
             sheet.collectStyles(<App {...props} />),
         })
@@ -32,8 +37,14 @@ export default class extends Document {
 
   render() {
     return (
-      <Html lang='en'>
-        <Head />
+      <Html lang="en">
+        <Head>
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

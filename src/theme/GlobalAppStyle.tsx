@@ -11,8 +11,13 @@ import pxSansWoff2 from '../../public/fonts/px_sans_nouveaux/px_sans_nouveaux.wo
 import pxSansTtf from '../../public/fonts/px_sans_nouveaux/px_sans_nouveaux.ttf'
 
 const GlobalAppStyle = createGlobalStyle`
+
+  html, body {
+    height: 100%;
+  }
   body {
-    margin: 0
+    margin: 0;
+    font-family: 'Dosis', sans-serif;
   }
 
   @font-face {

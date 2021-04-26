@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  width: calc(100% - 2em);
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 2rem;
+  box-sizing: border-box;
 `
 
 export default Wrapper

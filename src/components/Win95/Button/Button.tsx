@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { border } from '../Border'
 
@@ -13,8 +12,8 @@ export const StyledButton = styled.button<ButtonProps>`
   color: ${({ theme }) => theme.win95.materialText};
   padding: 6px 22px 6px;
   min-width: 70px;
-  font-size: 12px;
-  font-family: 'win95';
+  font-size: 16px;
+  font-family: 'Space mono', monospace;
   ${border()}
   :disabled {
     color: ${({ theme }) => theme.win95.canvasTextDisabled};
@@ -34,19 +33,17 @@ export const StyledButton = styled.button<ButtonProps>`
 const Button = ({
   children,
   variant = 'default',
-  fontSize = '12px',
   ...rest
 }: ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
-    <StyledButton variant={variant} fontSize={fontSize} {...rest}>
+    <StyledButton variant={variant} {...rest}>
       {children}
     </StyledButton>
   )
 }
 
 Button.defaultProps = {
-  children: 'Ok',
-  fontSize: '12px',
+  children: 'EMPTY',
 }
 
 export default Button

@@ -1,23 +1,36 @@
 # 0x0.icu.anima
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+0x0.icu.anima is an App frontend for 0x0 stack.
 
-## Available Scripts
+## Installation
 
-### npm start
+Clone the project and install with yarn.
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+```bash
+git clone git@github.com:belakm/0x0.icu.anima.git
+cd 0x0.icu.anima
+yarn
+```
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+## Usage
 
-### npm test
+### Development
 
-Launches the test runner in the interactive watch mode.
-See the section about running tests for more information.
+```bash
+npm run dev
+```
 
-### npm run build
+### Production
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+```bash
+npm run build
+```
+
+## Made with love and also:
+
+- [Next.js](https://nextjs.org/)
+- [Styled-components](https://styled-components.com/)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

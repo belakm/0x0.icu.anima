@@ -11,18 +11,12 @@ module.exports = withPlugins(
     [
       optimizedImages,
       {
-        handleImages: [
-          'gif',
-          'ico',
-          'jpg',
-          'png',
-          'svg',
-          'webp',
-        ],
+        handleImages: ['gif', 'ico', 'jpg', 'png', 'svg', 'webp'],
       },
-    ]
+    ],
   ],
   {
     distDir: 'build',
-  }
+    future: { webpack5: true },
+  },
 )

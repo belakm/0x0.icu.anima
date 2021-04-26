@@ -1,15 +1,15 @@
 import Page from '../components/skeleton/Page'
-import Gallery from '../components/gallery/Gallery'
+import Error404 from '../components/skeleton/Error404'
 import { withUrqlClient } from 'next-urql'
 import clientOptions from '../urql/client'
 
 const Index = () => (
   <Page
-    metaTitle="0x0_KERNEL_PANIC"
-    title="0w0, what is this?"
-    description="Check these out!!!!!!!!"
+    metaTitle="0x0_ERROR_404"
+    title="Ummm, doesn't seem to exist. I am sorry."
+    description="The requested page does not exist."
   >
-    <Gallery />
+    <Error404 />
   </Page>
 )
 
