@@ -1,6 +1,8 @@
 import { gql } from '@urql/core'
+import { useContext } from 'react'
 import styled from 'styled-components'
 import { useMutation } from 'urql'
+import ModalContext from '../../contexts/ModalContext'
 import Window, { WindowWrapper } from '../Win95/Window/Window'
 
 const DeleteItem = gql`
@@ -46,14 +48,26 @@ const CmsPortfolioItem = ({
   reload,
 }: ICmsPorfolioItem) => {
   const [deleteItemResult, deleteItem] = useMutation(DeleteItem)
+  const modalContext = useContext(ModalContext)
 
-  const deleteItemFn = () => {
+  const confirmDeletion = () => {
     deleteItem({ id }).then(({ error }) => {
       if (error) {
         console.log(error)
       } else {
         reload()
       }
+    })
+  }
+
+  const deleteItemFn = () => {
+    modalContext.openDialogModal({
+      message: <p>Do you really wanna delete: {headline}?</p>,
+      handleMessage: confirmation => {
+        if (confirmation) {
+          confirmDeletion()
+        }
+      },
     })
   }
 

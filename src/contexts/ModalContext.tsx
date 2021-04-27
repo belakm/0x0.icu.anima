@@ -1,8 +1,9 @@
-import { createContext, useState } from 'react'
+import { createContext, ReactElement, useState } from 'react'
 import styled from 'styled-components'
 import { FlexColumn } from '../components/common/Flex'
 import UrqlProvider from '../components/graphql/UrqlProvider'
 import Login, { ILogin } from '../components/user/Login'
+import Dialog, { IDialog } from '../components/common/Dialog'
 import Registration from '../components/user/Registration'
 
 const Backdrop = styled.div`
@@ -17,15 +18,21 @@ const Backdrop = styled.div`
   overflow-x: hidden;
 `
 interface IModalContext {
-  closeAllModals: Function
-  openLoginModal: Function
-  openRegistrationModal: Function
+  closeAllModals: () => void
+  openLoginModal: ({ message }: ILogin) => void
+  openDialogModal: ({ message, handleMessage }: IDialog) => void
+  openRegistrationModal: () => void
 }
 
 interface IDialogStates {
   login: {
     open: boolean
     message?: React.ReactNode
+  }
+  dialog: {
+    open: boolean
+    message: React.ReactNode
+    handleMessage: (anwser: boolean) => void
   }
   register: {
     open: boolean
@@ -36,6 +43,7 @@ export const ModalContext = createContext<IModalContext>({
   closeAllModals: () => {},
   openLoginModal: () => {},
   openRegistrationModal: () => {},
+  openDialogModal: () => {},
 })
 
 export const ModalProvider = ({
@@ -50,6 +58,11 @@ export const ModalProvider = ({
     },
     register: {
       open: false,
+    },
+    dialog: {
+      open: false,
+      message: 'Are you really sure??',
+      handleMessage: () => {},
     },
   })
 
@@ -66,9 +79,11 @@ export const ModalProvider = ({
   const openDialog = ({
     dialog,
     message,
+    handleMessage,
   }: {
     dialog: keyof IDialogStates
     message?: React.ReactNode
+    handleMessage?: (anwser: boolean) => void
   }) => {
     const closedDialogStates = Object.keys(dialogStates).reduce(
       (a, d) => ({ ...a, [d]: { open: false } }),
@@ -79,6 +94,7 @@ export const ModalProvider = ({
       [dialog]: {
         open: true,
         ...(message != null && { message }),
+        ...(handleMessage != null && { handleMessage }),
       },
     })
   }
@@ -92,6 +108,10 @@ export const ModalProvider = ({
     openRegistrationModal: () => {
       setDialogOpen(true)
       openDialog({ dialog: 'register' })
+    },
+    openDialogModal: ({ message, handleMessage }: IDialog) => {
+      setDialogOpen(true)
+      openDialog({ dialog: 'dialog', message, handleMessage })
     },
   }
 
@@ -112,6 +132,12 @@ export const ModalProvider = ({
             onMouseDown={backdropClick}
           >
             <UrqlProvider>
+              {dialogStates.dialog.open && (
+                <Dialog
+                  handleMessage={dialogStates.dialog.handleMessage}
+                  message={dialogStates.dialog.message}
+                />
+              )}
               {dialogStates.login.open && (
                 <Login message={dialogStates.login.message} />
               )}
