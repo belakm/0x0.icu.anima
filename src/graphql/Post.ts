@@ -49,17 +49,17 @@ export const SubmitPost = gql`
 export const UpdatePost = gql`
   mutation UpdatePost(
     $id: Int!
-    $body: String!
-    $headline: String!
-    $media: Base64EncodedBinary!
-    $mediaType: String!
+    $body: String
+    $headline: String
+    $media: Base64EncodedBinary
+    $mediaType: String
     $authorId: Int!
-    $topic: PostTopic!
+    $topic: PostTopic
   ) {
-    updatePost(
-      nodeId: $id,
-      postPatch: {
-        post: {
+    updatePostById(
+      input: {
+        id: $id,
+        postPatch: {
           body: $body
           headline: $headline
           media: $media
@@ -69,7 +69,20 @@ export const UpdatePost = gql`
         }
       }
     ) {
-      clientMutationId
+      post {
+        body
+        createdAt
+        headline
+        id
+        media
+        mediaType
+        summary
+        personByAuthorId {
+          fullName
+        }
+        topic
+        updatedAt
+      }
     }
   }
 `
