@@ -1,77 +1,14 @@
 import { useContext, useEffect, useState } from 'react'
-import { gql, useMutation, useQuery } from 'urql'
+import { useMutation, useQuery } from 'urql'
 import AuthContext from '../../contexts/AuthContext'
+import { FetchPosts, SubmitPost } from '../../graphql/Post'
+import toDataUrl from '../../utils/toDataUrl'
+import Grid from '../common/Grid'
 import Form from '../form/Form'
 import Window from '../Win95/Window/Window'
-import CmsGrid from './CmsGrid'
 import CmsPortfolioItem, { ICmsPorfolioItem } from './CmsPortfolioItem'
 
-const FetchCVPosts = gql`
-  query FetchCVPosts {
-    allPosts {
-      nodes {
-        body
-        createdAt
-        headline
-        id
-        media
-        summary
-        personByAuthorId {
-          fullName
-        }
-        topic
-        updatedAt
-      }
-    }
-  }
-`
-
-const SubmitPost = gql`
-  mutation SubmitPost(
-    $body: String!
-    $headline: String!
-    $media: Base64EncodedBinary!
-    $mediaType: String!
-    $authorId: Int!
-    $topic: PostTopic!
-  ) {
-    createPost(
-      input: {
-        post: {
-          body: $body
-          headline: $headline
-          media: $media
-          mediaType: $mediaType
-          topic: $topic
-          authorId: $authorId
-        }
-      }
-    ) {
-      clientMutationId
-    }
-  }
-`
-
-const toDataUrl = (file: Blob): Promise<string> => {
-  const reader = new FileReader()
-  const promise = new Promise<string>((resolve, reject) => {
-    reader.readAsDataURL(file)
-    reader.onloadend = ({ target }) => {
-      console.log(3, target)
-      if (
-        target &&
-        target.result &&
-        typeof target.result == 'string' &&
-        target.readyState == FileReader.DONE
-      ) {
-        resolve(target.result)
-      } else reject('')
-    }
-  })
-  return promise
-}
-
-interface IPortfolioValues {
+export interface IPostFormValues {
   body: string
   headline: string
   media: string | Blob
@@ -84,9 +21,40 @@ interface IFetchedPosts {
   }
 }
 
+export const postFormFields = [
+  {
+    type: 'string',
+    name: 'headline',
+    label: 'Headline',
+    required: true,
+  },
+  {
+    type: 'textarea',
+    name: 'body',
+    label: 'Body',
+    required: true,
+  },
+  {
+    type: 'file',
+    name: 'media',
+    label: 'Media',
+    required: true,
+  },
+  {
+    type: 'select',
+    name: 'topic',
+    label: 'Topic',
+    required: true,
+    options: [
+      { value: 'KERNEL_PANIC', text: 'KERNEL_PANIC' },
+      { text: 'PORTFOLIO', value: 'PORTFOLIO' },
+    ],
+  },
+]
+
 const CmsPortfolio = () => {
   const [allPosts, fetchAllPosts] = useQuery<IFetchedPosts>({
-    query: FetchCVPosts,
+    query: FetchPosts,
     requestPolicy: 'network-only',
   })
   const [posts, setPosts] = useState<ICmsPorfolioItem[]>()
@@ -99,38 +67,7 @@ const CmsPortfolio = () => {
     }
   }, [allPosts])
 
-  const formFields = [
-    {
-      type: 'string',
-      name: 'headline',
-      label: 'Headline',
-      required: true,
-    },
-    {
-      type: 'textarea',
-      name: 'body',
-      label: 'Body',
-      required: true,
-    },
-    {
-      type: 'file',
-      name: 'media',
-      label: 'Media',
-      required: true,
-    },
-    {
-      type: 'select',
-      name: 'topic',
-      label: 'Topic',
-      required: true,
-      options: [
-        { value: 'KERNEL_PANIC', text: 'KERNEL_PANIC' },
-        { text: 'PORTFOLIO', value: 'PORTFOLIO' },
-      ],
-    },
-  ]
-
-  const initialValues: IPortfolioValues = {
+  const initialValues: IPostFormValues = {
     body: '',
     headline: '',
     media: '',
@@ -175,13 +112,13 @@ const CmsPortfolio = () => {
               }
             }
           }}
-          fields={formFields}
+          fields={postFormFields}
           textSubmit="SUBMIT"
           initialValues={initialValues}
         />
       </Window>
       {posts ? (
-        <CmsGrid
+        <Grid
           elements={posts.map(
             ({
               body,
@@ -191,8 +128,10 @@ const CmsPortfolio = () => {
               media,
               mediaType,
               updatedAt,
+              topic,
             }) => (
               <CmsPortfolioItem
+                topic={topic}
                 key={id}
                 body={body}
                 createdAt={createdAt}

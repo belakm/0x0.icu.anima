@@ -12,11 +12,11 @@ const StyledGridElement = styled.div`
   align-self: stretch;
 `
 
-interface CmsGrid {
+interface IGrid {
   elements?: ReactElement[]
 }
 
-const CmsGrid = ({ elements }: CmsGrid) => {
+const Grid = ({ elements }: IGrid) => {
   return (
     <StyledGrid>
       {elements &&
@@ -27,4 +27,4 @@ const CmsGrid = ({ elements }: CmsGrid) => {
   )
 }
 
-export default CmsGrid
+export default Grid
