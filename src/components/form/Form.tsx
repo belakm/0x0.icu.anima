@@ -20,12 +20,6 @@ const Form = <T,>({
   initialValues,
 }: IForm<T>) => {
   const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState<boolean>(false)
-  useEffect(() => {
-    setTimeout(() => {
-      if (success) setSuccess(false)
-    }, 2500)
-  }, [success])
   return (
     <Formik
       initialValues={initialValues}
@@ -37,7 +31,6 @@ const Form = <T,>({
               } else {
                 resetForm()
                 onSuccess ? onSuccess(values) : null
-                setSuccess(true)
               }
             })
           : null
@@ -63,11 +56,6 @@ const Form = <T,>({
             </Button>
           </FlexColumn>
           {error && <p color="red">{error} Try again :)</p>}
-          {success && (
-            <p color="green">
-              <b>QUERY ACCEPTED BY 0x0_DATABASE.</b>
-            </p>
-          )}
           <p>* All fields are required.</p>
         </FormikForm>
       )}

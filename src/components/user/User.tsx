@@ -23,12 +23,12 @@ const User = () => {
           text={authContext.user?.fullName || 'Anonymous'}
           items={[
             {
-              text: 'Log out',
-              fn: authContext.logout,
-            },
-            {
               text: 'CV Manager',
               link: '/manager/portfolio',
+            },
+            {
+              text: 'Log out',
+              fn: authContext.logout,
             },
           ]}
         />

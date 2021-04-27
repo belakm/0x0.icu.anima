@@ -1,5 +1,5 @@
 import { withUrqlClient } from 'next-urql'
-import KernelPanic from '../components/kernel-panic/KernelPanic'
+import Gallery from '../components/gallery/Gallery'
 import Page from '../components/skeleton/Page'
 import clientOptions from '../urql/client'
 
@@ -10,7 +10,7 @@ const PageKernelPanic = () => (
     meta-title="Sitri store"
     meta-description="Sitri's store shirts and art for sale"
   >
-    <KernelPanic />
+    <Gallery />
   </Page>
 )
 

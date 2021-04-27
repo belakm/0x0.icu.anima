@@ -1,60 +1,59 @@
-import { useEffect, useState } from 'react';
-import GalleryImage from './GalleryImage'
-import { FlexColumn, FlexRow } from '../common/Flex'
-import { gql, useQuery } from 'urql';
-
-const PostsQuery = gql`
-  query PostsQuery {
-    allPosts {
-      edges {
-        node {
-          id
-          body
-          createdAt
-          headline
-        }
-      }
-    }
-  }
-`;
-
-interface IGalleryImage {
-  src: string
-  title: string
-}
-
-const sitriImages: IGalleryImage[] = []
+import { useEffect, useState } from 'react'
+import GalleryItem, { IGalleryItem } from './GalleryItem'
+import { useQuery } from 'urql'
+import { FetchPosts } from '../../graphql/Post'
+import Grid from '../common/Grid'
+import Window, { WindowWrapper } from '../Win95/Window/Window'
 
 const Gallery = () => {
+  const [postsResult, reexecuteQuery] = useQuery({
+    query: FetchPosts,
+  })
+  const { data, fetching, error } = postsResult
+  const [posts, setPosts] = useState<IGalleryItem[]>([])
 
-  const [result, reexecuteQuery] = useQuery({
-    query: PostsQuery,
-  });
-
-  const { data, fetching, error } = result;
-  
-  const [images, setImages] = useState<IGalleryImage[]>([])
-  
   useEffect(() => {
-    setImages(sitriImages)
-  }, [])
+    if (postsResult.data) {
+      setPosts(postsResult.data.allPosts.nodes)
+    }
+  }, [postsResult])
 
-  if (fetching) return <p>Loading...</p>;
-  if (error) return <p>Oh no... {error.message}</p>;
+  if (fetching) return <p>Loading...</p>
+  if (error) return <p>Oh no... {error.message}</p>
 
-  return (
-    <section>
-      <FlexRow wrap="wrap" align="center">
-        {images.map(({ src, title }) => (
-          <FlexColumn style={{ width: '30%', margin: '1em' }} key={title}>
-            <GalleryImage
-              src={src}
-              title={`${title.toUpperCase()}.sitrifile`}
-            />
-          </FlexColumn>
-        ))}
-      </FlexRow>
-    </section>
+  return posts ? (
+    <Grid
+      elements={posts.map(
+        ({
+          body,
+          createdAt,
+          headline,
+          id,
+          media,
+          mediaType,
+          updatedAt,
+          topic,
+        }) => (
+          <Window title={headline}>
+            <WindowWrapper>
+              <GalleryItem
+                topic={topic}
+                key={id}
+                body={body}
+                createdAt={createdAt}
+                headline={headline}
+                id={id}
+                media={media}
+                mediaType={mediaType}
+                updatedAt={updatedAt}
+              />
+            </WindowWrapper>
+          </Window>
+        ),
+      )}
+    />
+  ) : (
+    <p>Loading ...</p>
   )
 }
 
