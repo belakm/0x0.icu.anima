@@ -13,7 +13,7 @@ export const StyledButton = styled.button<ButtonProps>`
   padding: 6px 22px 6px;
   min-width: 70px;
   font-size: 16px;
-  font-family: 'Space mono', monospace;
+  font-family: 'Share Tech Mono', monospace;
   ${border()}
   :disabled {
     color: ${({ theme }) => theme.win95.canvasTextDisabled};
