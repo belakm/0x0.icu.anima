@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import GalleryItem, { IGalleryItem } from './GalleryItem'
 import { useQuery } from 'urql'
 import { FetchPosts } from '../../graphql/Post'
-import Grid from '../common/Grid'
 import Window, { WindowWrapper } from '../Win95/Window/Window'
+import ColumnGrid from '../common/ColumnGrid'
 
 const Gallery = () => {
   const [postsResult, reexecuteQuery] = useQuery({
@@ -22,7 +22,7 @@ const Gallery = () => {
   if (error) return <p>Oh no... {error.message}</p>
 
   return posts ? (
-    <Grid
+    <ColumnGrid
       elements={posts.map(
         ({
           body,
