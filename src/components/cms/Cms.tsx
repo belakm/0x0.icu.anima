@@ -1,5 +1,5 @@
 import { useRouter } from 'next/dist/client/router'
-import Window from '../Win95/Window/Window'
+import Window from '../system/Window/Window'
 import CmsNft from './CmsNft'
 import CmsPortfolio from './CmsPortfolio'
 

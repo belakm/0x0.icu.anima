@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import AuthContext from '../../contexts/AuthContext'
 import ModalContext from '../../contexts/ModalContext'
 import Dropdown from '../common/Dropdown'
-import Button from '../Win95/Button/Button'
+import Button from '../system/Button/Button'
 
 const User = () => {
   const modalContext = useContext(ModalContext)

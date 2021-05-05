@@ -64,12 +64,15 @@ interface IText {
 
 export const Text = styled.span<IText>`
   color: ${({ color, theme }) => {
-    return color == 'primary' ? theme.win95.materialText : 'inherit'
+    return color == 'primary'
+      ? theme.system.materialText
+      : color == 'secondary'
+      ? theme.system.headerText
+      : 'inherit'
   }};
 `
 
 export const Code = styled.span`
-  padding: 0.33em 1em;
   border-radius: 2px;
   font-size: 1rem;
   line-height: 1.6rem;
@@ -77,8 +80,8 @@ export const Code = styled.span`
   unicode-bidi: embed;
   font-family: monospace;
   white-space: pre-wrap;
-  background: ${({ theme }) => theme.win95.headerBackground};
-  color: ${({ theme }) => theme.win95.headerText};
+  background: ${({ theme }) => theme.system.headerBackground};
+  color: ${({ theme }) => theme.system.headerText};
 `
 
 export const Article = styled.article`
@@ -102,5 +105,8 @@ export const Article = styled.article`
     + ${Paragraph} {
       margin-top: -1em;
     }
+  }
+  > *:last-child {
+    margin-bottom: 0;
   }
 `

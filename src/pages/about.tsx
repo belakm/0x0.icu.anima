@@ -11,16 +11,9 @@ const PageKernelPanic = () => (
     meta-title="Sitri store"
     meta-description="Sitri's store shirts and art for sale"
   >
-    <Window
-      title="About Kernel Panic"
-      style={{ width: '100%', marginBottom: '1em' }}
-    >
-      <WindowWrapper>
-        KERNEL_PANIC is a collection of graphics and illustrations aimed at
-        cyber reality.
-      </WindowWrapper>
+    <Window title="About us" style={{ width: '100%', marginBottom: '1em' }}>
+      <WindowWrapper>Mitja and Nina Belak.</WindowWrapper>
     </Window>
-    <Gallery topic="KERNEL_PANIC" />
   </Page>
 )
 

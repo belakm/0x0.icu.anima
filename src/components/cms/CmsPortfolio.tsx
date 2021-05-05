@@ -5,7 +5,7 @@ import { FetchPosts, SubmitPost } from '../../graphql/Post'
 import toDataUrl from '../../utils/toDataUrl'
 import Grid from '../common/Grid'
 import Form from '../form/Form'
-import Window from '../Win95/Window/Window'
+import Window from '../system/Window/Window'
 import CmsPortfolioItem, { ICmsPorfolioItem } from './CmsPortfolioItem'
 
 export interface IPostFormValues {

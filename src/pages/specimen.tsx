@@ -4,7 +4,7 @@ import Page from '../components/skeleton/Page'
 import Window, { WindowWrapper } from '../components/system/Window/Window'
 import clientOptions from '../urql/client'
 
-const PageKernelPanic = () => (
+const PageSpecimen = () => (
   <Page
     title="My merch"
     description="no touching"
@@ -12,18 +12,18 @@ const PageKernelPanic = () => (
     meta-description="Sitri's store shirts and art for sale"
   >
     <Window
-      title="About Kernel Panic"
+      title="About this collection"
       style={{ width: '100%', marginBottom: '1em' }}
     >
       <WindowWrapper>
-        KERNEL_PANIC is a collection of graphics and illustrations aimed at
-        cyber reality.
+        Heeey~~~! This are some of my newer and older works, that are dear to
+        me.
       </WindowWrapper>
     </Window>
-    <Gallery topic="KERNEL_PANIC" />
+    <Gallery topic="PORTFOLIO" />
   </Page>
 )
 
 export default withUrqlClient((_ssrExchange, ctx) => clientOptions)(
-  PageKernelPanic,
+  PageSpecimen,
 )

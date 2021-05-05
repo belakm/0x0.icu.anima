@@ -38,16 +38,16 @@ export const border = ({ direction = 'extrude' }: IBorderStyle = {}) =>
   createBorder({
     direction,
     outerBottomRight: css`
-      ${({ theme }) => theme.win95.borderDarkest}
+      ${({ theme }) => theme.system.borderDarkest}
     `,
     innerBottomRight: css`
-      ${({ theme }) => theme.win95.borderDark}
+      ${({ theme }) => theme.system.borderDark}
     `,
     outerTopLeft: css`
-      ${({ theme }) => theme.win95.borderLightest}
+      ${({ theme }) => theme.system.borderLightest}
     `,
     innerTopLeft: css`
-      ${({ theme }) => theme.win95.borderLight}
+      ${({ theme }) => theme.system.borderLight}
     `,
   })
 
@@ -55,16 +55,16 @@ export const windowBorder = ({ direction = 'extrude' }: IBorderStyle = {}) =>
   createBorder({
     direction,
     outerBottomRight: css`
-      ${({ theme }) => theme.win95.borderDarkest}
+      ${({ theme }) => theme.system.borderDarkest}
     `,
     innerBottomRight: css`
-      ${({ theme }) => theme.win95.borderDark}
+      ${({ theme }) => theme.system.borderDark}
     `,
     outerTopLeft: css`
-      ${({ theme }) => theme.win95.borderLight}
+      ${({ theme }) => theme.system.borderLight}
     `,
     innerTopLeft: css`
-      ${({ theme }) => theme.win95.borderLightest}
+      ${({ theme }) => theme.system.borderLightest}
     `,
   })
 
@@ -72,16 +72,16 @@ export const scrollBarBorder = ({ direction = 'extrude' }: IBorderStyle = {}) =>
   createBorder({
     direction,
     outerBottomRight: css`
-      ${({ theme }) => theme.win95.borderDarkest}
+      ${({ theme }) => theme.system.borderDarkest}
     `,
     innerBottomRight: css`
-      ${({ theme }) => theme.win95.borderDark}
+      ${({ theme }) => theme.system.borderDark}
     `,
     outerTopLeft: css`
-      ${({ theme }) => theme.win95.borderLight}
+      ${({ theme }) => theme.system.borderLight}
     `,
     innerTopLeft: css`
-      ${({ theme }) => theme.win95.borderLightest}
+      ${({ theme }) => theme.system.borderLightest}
     `,
   })
 

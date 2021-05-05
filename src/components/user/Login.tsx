@@ -6,7 +6,7 @@ import ModalContext from '../../contexts/ModalContext'
 import { FlexColumn } from '../common/Flex'
 import Modal from '../common/Modal'
 import FormField from '../form/FormField'
-import Button from '../Win95/Button/Button'
+import Button from '../system/Button/Button'
 
 const SignIn = gql`
   mutation SignIn($email: String!, $password: String!) {

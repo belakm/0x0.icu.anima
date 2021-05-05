@@ -1,24 +1,24 @@
 import {
-  IWindowsColors,
+  ISystemColors,
   IStatusColors,
   IBackgroundColors,
 } from 'styled-components'
 
 interface IColorSettings {
   background: IBackgroundColors
-  win95: IWindowsColors
+  system: ISystemColors
   status: IStatusColors
 }
 
 const colorSettings: IColorSettings = {
   background: {
-    lineThick: 'hsla(130,100%, 50%, .36)',
-    lineThin: 'hsla(130,100%, 50%, .28)',
+    lineThick: 'hsla(130,100%, 50%, .14)',
+    lineThin: 'hsla(130,100%, 50%, .12)',
     background: 'black',
   },
-  win95: {
-    anchor: '#1034a6',
-    anchorVisited: '#440381',
+  system: {
+    anchor: 'white',
+    anchorVisited: '#ffc400',
     borderDark: '#282828',
     borderDarkest: '#000000',
     borderLight: '#656565',
@@ -30,16 +30,20 @@ const colorSettings: IColorSettings = {
     canvasTextInvert: '#ffffff',
     headerBackground: '#000000',
     headerNotActiveBackground: '#7f7f7f',
-    headerNotActiveText: '#535353',
+    headerNotActiveText: '#2b2b2b',
     headerText: '#ffb1f2',
-    material: '#535353',
+    material: '#2b2b2b',
     materialDark: '#282828',
     materialText: '#35ff3f',
     materialTextDisabled: '#282828',
-    materialTextDisabledShadow: '#ffb1f2',
+    materialTextDisabledShadow: '#4d3048',
     materialTextInvert: '#ffffff',
     progress: '#000000',
     tooltip: '#fefbcc',
+    terminal: '#2b2b2b',
+    terminalText: 'white',
+    terminalTextSuccess: '#35ff3f',
+    terminalTextFail: '#ff5e00',
   },
   status: {
     ok: '#35ff3f',

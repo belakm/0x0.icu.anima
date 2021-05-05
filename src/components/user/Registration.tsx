@@ -7,7 +7,7 @@ import ModalContext from '../../contexts/ModalContext'
 import { FlexColumn, FlexRow } from '../common/Flex'
 import Modal from '../common/Modal'
 import FormField from '../form/FormField'
-import Button from '../Win95/Button/Button'
+import Button from '../system/Button/Button'
 import { API_GRAPHQL } from '../../../env/env'
 
 const RegisterUser = gql`

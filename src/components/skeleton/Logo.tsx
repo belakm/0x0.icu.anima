@@ -1,23 +1,52 @@
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-const StyledText = styled.h1`
-  margin: 0 1em 0 0;
-  font-weight: 400;
-  font-size: 2em;
-  color: #ff00bc;
-  text-decoration: none;
+const StyledLogo = styled.img`
+  width: 100%;
+  height: auto;
+  z-index: 1;
 `
 
-interface ILogo {
-  children: string
-}
+const StyledLogoBlink = styled(StyledLogo)`
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+`
 
-const Logo = ({ children }: ILogo) => {
+const LogoContainer = styled.div`
+  position: relative;
+  height: 0;
+  width: 15rem;
+`
+
+const Logo = () => {
+  const [isBlinking, setIsBlinking] = useState<boolean>(false)
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout
+    const timer = setInterval(() => {
+      setIsBlinking(true)
+      timeout = setTimeout(() => {
+        setIsBlinking(false)
+      }, 1000)
+    }, 5800)
+    return () => {
+      clearTimeout(timeout)
+      clearInterval(timer)
+    }
+  })
+
   return (
     <Link href="/">
       <a href="/">
-        <StyledText>{children}</StyledText>
+        <LogoContainer>
+          <StyledLogo src="/images/brand/logo2.png" />
+          {isBlinking && (
+            <StyledLogoBlink src="/images/brand/logo2_blink.png" />
+          )}
+        </LogoContainer>
       </a>
     </Link>
   )

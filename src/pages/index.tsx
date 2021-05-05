@@ -9,7 +9,7 @@ const Index = () => (
     title="0w0, what is this?"
     description="Check these out!!!!!!!!"
   >
-    <Gallery />
+    <Gallery topic="KERNEL_PANIC" />
   </Page>
 )
 
