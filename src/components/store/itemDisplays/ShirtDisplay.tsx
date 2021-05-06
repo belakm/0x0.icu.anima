@@ -1,31 +1,39 @@
+import { useState } from 'react'
 import styled from 'styled-components'
-import { ImageViewer } from '../../gallery/GalleryItem'
-
-interface IShirtDisplay {
-  image: string
-  hue?: number
-}
+import { Title } from '../../common/Typography'
+import { IItem } from '../Item'
 
 const BlankShirt = styled.img<{ hue?: number }>`
-  width: 100%;
-  height: auto;
+  height: 100%;
+  width: auto;
   filter: hue-rotate(${({ hue }) => hue || 0});
 `
 
 const Motive = styled.img`
-  width: 100%;
-  height: auto;
+  height: 100%;
+  width: auto;
   position: absolute;
   left: 0;
   top: 0;
 `
 
-const ShirtDisplay = ({ image, hue = 0 }: IShirtDisplay) => {
+const ShirtDisplayContainer = styled.section`
+  position: relative;
+  height: 100%;
+  width: 100%;
+`
+
+interface IShirtDisplay {
+  item: IItem
+}
+
+const ShirtDisplay = ({ item }: IShirtDisplay) => {
+  const [hue, setHue] = useState<number>(0)
   return (
-    <div style={{ position: 'relative' }}>
+    <ShirtDisplayContainer>
       <BlankShirt hue={hue} src="/images/articles/tshirt.png" />
-      <Motive src={image} />
-    </div>
+      <Motive src={/* item.media */ '/images/articles/print_paypig.png'} />
+    </ShirtDisplayContainer>
   )
 }
 

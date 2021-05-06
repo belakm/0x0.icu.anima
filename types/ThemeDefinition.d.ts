@@ -58,5 +58,6 @@ declare module 'styled-components' {
     status: IStatusColors
     system: ISystemColors
     levels: LevelsDefinition
+    font: string
   }
 }

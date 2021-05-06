@@ -1,19 +1,23 @@
 import styled from 'styled-components'
 import { border } from '../Border'
 
+export type IButtonVariant = 'default' | 'primary'
+
 export interface ButtonProps {
   children: React.ReactChildren | React.ReactNode | string | number
-  variant?: string
+  variant?: IButtonVariant
   fontSize?: string
 }
 
 export const StyledButton = styled.button<ButtonProps>`
-  background-color: ${({ theme }) => theme.system.material};
-  color: ${({ theme }) => theme.system.materialText};
+  background-color: ${({ theme, variant }) =>
+    variant == 'default' ? theme.system.material : theme.system.materialText};
+  color: ${({ theme, variant }) =>
+    variant == 'default' ? theme.system.materialText : theme.system.material};
   padding: 6px 22px 6px;
   min-width: 70px;
   font-size: 16px;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: ${({ theme }) => theme.font};
   ${border()}
   :disabled {
     color: ${({ theme }) => theme.system.canvasTextDisabled};

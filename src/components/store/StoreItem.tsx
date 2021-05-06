@@ -28,26 +28,7 @@ const StoreItem = ({
   style,
   type,
 }: IStoreItem) => {
-  return (
-    <div style={style}>
-      <WindowWrapper>
-        <Title>{name}</Title>
-        <div>
-          <PriceTag>
-            {price} <SmallText>{currency}</SmallText>
-          </PriceTag>
-          {type == 'shirt' ? (
-            <ShirtDisplay image={image} />
-          ) : (
-            <StoreItemImage src={image} />
-          )}
-        </div>
-        <Article>
-          <Paragraph>{description}</Paragraph>
-        </Article>
-      </WindowWrapper>
-    </div>
-  )
+  return <div style={style}></div>
 }
 
 export default StoreItem

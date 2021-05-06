@@ -10,8 +10,9 @@ const Theme: DefaultTheme = {
     static: 50,
     window: 100,
     modalBackdrop: 200,
-    modal: 201
+    modal: 201,
   },
+  font: "'Share Tech Mono', monospace",
 }
 
 export default Theme

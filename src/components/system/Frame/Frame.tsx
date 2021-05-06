@@ -41,7 +41,6 @@ const Frame = styled.section<IFrame>`
   padding: 3px;
   display: flex;
   flex-direction: ${({ direction }) => direction};
-  font-family: 'Share Tech Mono', monospace;
 `
 Frame.defaultProps = {
   width: 'auto',
