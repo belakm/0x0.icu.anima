@@ -1,6 +1,6 @@
 import { Form, Formik, FormikValues } from 'formik'
 import { withUrqlClient } from 'next-urql'
-import { useContext, useEffect, useState } from 'react'
+import { CSSProperties, useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { gql, useMutation } from 'urql'
 import ModalContext from '../../contexts/ModalContext'
@@ -72,7 +72,7 @@ const Registration = () => {
     [id: string]: TValue
   }
 
-  const rowStyle: React.CSSProperties = {
+  const rowStyle: CSSProperties = {
     width: '50%',
     boxSizing: 'border-box',
   }

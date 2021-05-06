@@ -3,9 +3,12 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const StyledLogo = styled.img`
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
   z-index: 1;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 `
 
 const StyledLogoBlink = styled(StyledLogo)`
@@ -17,23 +20,21 @@ const StyledLogoBlink = styled(StyledLogo)`
 
 const LogoContainer = styled.div`
   position: relative;
-  height: 0;
-  width: 15rem;
+  height: 40px;
+  margin-right: 2.2em;
 `
 
 const Logo = () => {
   const [isBlinking, setIsBlinking] = useState<boolean>(false)
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout
     const timer = setInterval(() => {
       setIsBlinking(true)
-      timeout = setTimeout(() => {
+      setTimeout(() => {
         setIsBlinking(false)
-      }, 1000)
+      }, 200)
     }, 5800)
     return () => {
-      clearTimeout(timeout)
       clearInterval(timer)
     }
   })
@@ -42,9 +43,9 @@ const Logo = () => {
     <Link href="/">
       <a href="/">
         <LogoContainer>
-          <StyledLogo src="/images/brand/logo2.png" />
+          <StyledLogo src="/images/brand/0x0_cat.png" />
           {isBlinking && (
-            <StyledLogoBlink src="/images/brand/logo2_blink.png" />
+            <StyledLogoBlink src="/images/brand/0x0_cat_blink.png" />
           )}
         </LogoContainer>
       </a>

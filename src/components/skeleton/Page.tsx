@@ -16,7 +16,7 @@ type IPage = {
 const PageWrapper = styled(Wrapper)`
   padding-top: 3em;
   padding-bottom: 2em;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 82px - 2em);
 `
 
 const Page: React.FunctionComponent<IPage> = ({

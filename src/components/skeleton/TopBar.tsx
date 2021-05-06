@@ -29,16 +29,16 @@ const TopBarStyled = styled.nav`
   position: fixed;
   top: 0;
   background: ${({ theme }) => theme.system.material};
-  border-bottom: 2px dashed ${({ theme }) => theme.system.materialText};
+  border-bottom: 1px dashed ${({ theme }) => theme.system.materialText};
   width: 100%;
   padding: 0.5em 0;
-  height: 60px;
+  height: calc(41px + 1em);
   box-sizing: border-box;
 `
 
 const TopBarPadding = styled.div`
   width: 100%;
-  height: 60px;
+  height: calc(41px + 1em);
 `
 
 const TopBar = () => {
@@ -51,7 +51,7 @@ const TopBar = () => {
             <Logo />
             <FlexRow grow={1}>
               {links.map(({ name, href }, index) => (
-                <LinkButton key={index} href={href}>
+                <LinkButton style={{ height: '100%' }} key={index} href={href}>
                   {name}
                 </LinkButton>
               ))}
