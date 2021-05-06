@@ -2,7 +2,7 @@ import { Formik, Form as FormikForm } from 'formik'
 import { useEffect, useState } from 'react'
 import { FlexColumn } from '../common/Flex'
 import FormField, { IFormField } from '../form/FormField'
-import Button from '../Win95/Button/Button'
+import Button from '../system/Button/Button'
 
 export interface IForm<T> {
   fields: IFormField[]

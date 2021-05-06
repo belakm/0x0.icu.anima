@@ -20,6 +20,13 @@ const GlobalAppStyle = createGlobalStyle`
     font-family: 'Dosis', sans-serif;
   }
 
+  a {
+    color: ${({ theme }) => theme.system.anchor};
+    :visited {
+      color: ${({ theme }) => theme.system.anchorVisited};
+    }
+  }
+
   @font-face {
     font-family: "LinearBeam";
     src: url(${LineBeamEot}); /* IE9 Compat Modes */

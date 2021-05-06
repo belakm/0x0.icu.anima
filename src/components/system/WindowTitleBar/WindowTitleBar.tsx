@@ -54,10 +54,10 @@ const TitleBarBackground = styled.div<{ isActive?: boolean }>`
   align-items: center;
   background: ${({ isActive, theme }) =>
     isActive
-      ? theme.win95.headerBackground
-      : theme.win95.headerNotActiveBackground};
+      ? theme.system.headerBackground
+      : theme.system.headerNotActiveBackground};
   color: ${({ isActive, theme }) =>
-    isActive ? theme.win95.headerText : theme.win95.headerNotActiveText};
+    isActive ? theme.system.headerText : theme.system.headerNotActiveText};
 `
 
 const Title = styled.h1`

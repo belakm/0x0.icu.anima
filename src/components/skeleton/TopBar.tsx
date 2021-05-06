@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { FlexRow } from '../common/Flex'
 import Wrapper from '../common/Wrapper'
 import User from '../user/User'
-import LinkButton from '../Win95/Button/LinkButton'
+import LinkButton from '../system/Button/LinkButton'
 import Logo from './Logo'
 
 const links = [
@@ -11,8 +11,12 @@ const links = [
     href: '/kernel-panic',
   },
   {
-    name: 'SITRI',
-    href: '/store',
+    name: 'SITRI ARTWORKS',
+    href: '/sitri',
+  },
+  {
+    name: '0x0_SPECIMEN',
+    href: '/specimen',
   },
   {
     name: 'ABOUT US',
@@ -24,17 +28,17 @@ const TopBarStyled = styled.nav`
   z-index: ${({ theme }) => theme.levels.static};
   position: fixed;
   top: 0;
-  background: ${({ theme }) => theme.win95.material};
-  border-bottom: 2px dashed ${({ theme }) => theme.win95.materialText};
+  background: ${({ theme }) => theme.system.material};
+  border-bottom: 1px dashed ${({ theme }) => theme.system.materialText};
   width: 100%;
   padding: 0.5em 0;
-  height: 60px;
+  height: calc(41px + 1em);
   box-sizing: border-box;
 `
 
 const TopBarPadding = styled.div`
   width: 100%;
-  height: 60px;
+  height: calc(41px + 1em);
 `
 
 const TopBar = () => {
@@ -44,10 +48,10 @@ const TopBar = () => {
       <TopBarStyled>
         <Wrapper>
           <FlexRow>
-            <Logo>0x0</Logo>
+            <Logo />
             <FlexRow grow={1}>
               {links.map(({ name, href }, index) => (
-                <LinkButton key={index} href={href}>
+                <LinkButton style={{ height: '100%' }} key={index} href={href}>
                   {name}
                 </LinkButton>
               ))}

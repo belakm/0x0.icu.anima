@@ -15,6 +15,9 @@ export interface IFrame {
   minHeight?: CSS.Property.MinHeight | number
   minWidth?: CSS.Property.MinWidth | number
   direction?: CSS.Property.FlexDirection
+  intrusion?: 'intrude' | 'extrude'
+  background?: CSS.Property.BackgroundColor
+  isTerminal?: boolean
 }
 
 const isNumeric = (input: string | number) => {
@@ -26,9 +29,11 @@ const toPxUnits = (input: pxInput | undefined) => {
 }
 
 const Frame = styled.section<IFrame>`
-  ${windowBorder()}
-  background: ${({ theme }) => theme.win95.material};
-  color: ${({ theme }) => theme.win95.materialText};
+  ${({ intrusion }) => windowBorder({ direction: intrusion })}
+  background: ${({ theme, isTerminal }) =>
+    isTerminal ? theme.system.terminal : theme.system.material};
+  color: ${({ theme, isTerminal }) =>
+    isTerminal ? theme.system.terminalText : theme.system.materialText};
   width: ${({ width }) => toPxUnits(width)};
   min-width: ${({ minWidth }) => minWidth};
   height: ${({ height }) => toPxUnits(height)};

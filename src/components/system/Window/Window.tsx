@@ -14,10 +14,18 @@ export interface IWindow extends IFrame {
   children: React.ReactNode
   title?: string
   style?: CSSProperties
+  isTerminal?: boolean
   options?: ITitleBarOption[]
 }
-const Window = ({ children, title, width, style, options }: IWindow) => (
-  <Frame width={width} style={style}>
+const Window = ({
+  children,
+  title,
+  width,
+  style,
+  options,
+  isTerminal,
+}: IWindow) => (
+  <Frame width={width} style={style} isTerminal={isTerminal}>
     <WindowTitleBar options={options} title={title || '0x0_Window'} />
     {children}
   </Frame>

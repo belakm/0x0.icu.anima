@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import toDateFormat from '../../utils/toDateFormat'
 import { SmallText } from '../common/Typography'
 
-const ImageViewer = styled.div`
+export const ImageViewer = styled.div`
   background-image: linear-gradient(45deg, #808080 25%, transparent 25%),
     linear-gradient(-45deg, #808080 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, #808080 75%),

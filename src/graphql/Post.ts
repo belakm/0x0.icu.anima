@@ -1,8 +1,28 @@
-import { gql } from "urql";
+import { gql } from 'urql'
 
 export const FetchPosts = gql`
   query FetchPosts {
     allPosts {
+      nodes {
+        body
+        createdAt
+        headline
+        id
+        media
+        summary
+        personByAuthorId {
+          fullName
+        }
+        topic
+        updatedAt
+      }
+    }
+  }
+`
+
+export const FetchPostsByTopic = gql`
+  query FetchPosts($topic: PostTopic!) {
+    allPosts(condition: { topic: $topic }) {
       nodes {
         body
         createdAt
@@ -58,7 +78,7 @@ export const UpdatePost = gql`
   ) {
     updatePostById(
       input: {
-        id: $id,
+        id: $id
         postPatch: {
           body: $body
           headline: $headline

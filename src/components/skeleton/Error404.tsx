@@ -1,4 +1,4 @@
-import Window, { WindowWrapper } from '../Win95/Window/Window'
+import Window, { WindowWrapper } from '../system/Window/Window'
 
 const Error404 = () => {
   return (

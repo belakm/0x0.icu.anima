@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Window, { IWindow } from '../Win95/Window/Window'
+import Window, { IWindow } from '../system/Window/Window'
 
 const StyledModal = styled.div`
   z-index: ${({ theme }) => theme.levels.modal};

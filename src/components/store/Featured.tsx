@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Window from './../Win95/Window/Window'
+import Window from '../system/Window/Window'
 
 const FeaturedImage = styled.img`
   width: 360px;

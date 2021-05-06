@@ -1,13 +1,13 @@
 import { Form, Formik, FormikValues } from 'formik'
 import { withUrqlClient } from 'next-urql'
-import { useContext, useEffect, useState } from 'react'
+import { CSSProperties, useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { gql, useMutation } from 'urql'
 import ModalContext from '../../contexts/ModalContext'
 import { FlexColumn, FlexRow } from '../common/Flex'
 import Modal from '../common/Modal'
 import FormField from '../form/FormField'
-import Button from '../Win95/Button/Button'
+import Button from '../system/Button/Button'
 import { API_GRAPHQL } from '../../../env/env'
 
 const RegisterUser = gql`
@@ -72,7 +72,7 @@ const Registration = () => {
     [id: string]: TValue
   }
 
-  const rowStyle: React.CSSProperties = {
+  const rowStyle: CSSProperties = {
     width: '50%',
     boxSizing: 'border-box',
   }

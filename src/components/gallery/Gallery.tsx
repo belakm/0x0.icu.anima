@@ -1,27 +1,43 @@
 import { useEffect, useState } from 'react'
 import GalleryItem, { IGalleryItem } from './GalleryItem'
 import { useQuery } from 'urql'
-import { FetchPosts } from '../../graphql/Post'
-import Window, { WindowWrapper } from '../Win95/Window/Window'
+import { FetchPosts, FetchPostsByTopic } from '../../graphql/Post'
+import Window, { WindowWrapper } from '../system/Window/Window'
 import ColumnGrid from '../common/ColumnGrid'
+import ProgressLoader from '../system/LoaderTerminal/ProgressLoader'
+import LoaderTerminal from '../system/LoaderTerminal/LoaderTerminal'
 
-const Gallery = () => {
+interface IGallery {
+  topic: 'PORTFOLIO' | 'KERNEL_PANIC'
+}
+
+const Gallery = ({ topic }: IGallery) => {
   const [postsResult, reexecuteQuery] = useQuery({
-    query: FetchPosts,
+    query: FetchPostsByTopic,
+    variables: { topic },
   })
+
   const { data, fetching, error } = postsResult
+  const [success, setSuccess] = useState<string | undefined>(undefined)
+  const [fail, setFail] = useState<string | undefined>(error?.message)
   const [posts, setPosts] = useState<IGalleryItem[]>([])
 
   useEffect(() => {
     if (postsResult.data) {
-      setPosts(postsResult.data.allPosts.nodes)
+      setSuccess(
+        `Fetch complete, got ${postsResult.data.allPosts.nodes.length} items.`,
+      )
+      setTimeout(() => {
+        setPosts(postsResult.data.allPosts.nodes)
+      }, 200)
+    } else {
+      setFail(error?.message)
     }
   }, [postsResult])
 
-  if (fetching) return <p>Loading...</p>
   if (error) return <p>Oh no... {error.message}</p>
 
-  return posts ? (
+  return !fetching && posts.length > 0 ? (
     <ColumnGrid
       elements={posts.map(
         ({
@@ -53,7 +69,13 @@ const Gallery = () => {
       )}
     />
   ) : (
-    <p>Loading ...</p>
+    <LoaderTerminal
+      title="0x0_TERM"
+      textScriptName="./init_gallery.sh"
+      textProgress="Loading: "
+      textFailed={fail}
+      textSuccess={success}
+    />
   )
 }
 

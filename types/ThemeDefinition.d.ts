@@ -2,7 +2,6 @@ import 'styled-components'
 
 // and extend them!
 declare module 'styled-components' {
-
   export interface IStatusColors {
     ok: string
     error: string
@@ -10,12 +9,12 @@ declare module 'styled-components' {
   }
 
   export interface IBackgroundColors {
-    lineThick: string,
-    lineThin: string,
+    lineThick: string
+    lineThin: string
     background: string
   }
 
-  export interface IWindowsColors {
+  export interface ISystemColors {
     anchor: string
     anchorVisited: string
     borderDark: string
@@ -39,21 +38,25 @@ declare module 'styled-components' {
     materialTextInvert: string
     tooltip: string
     progress: string
+    terminal: string
+    terminalText: string
+    terminalTextSuccess: string
+    terminalTextFail: string
   }
 
   export interface LevelsDefinition {
     background: number
     window: number
     content: number
-    static: number,
-    modal: number,
+    static: number
+    modal: number
     modalBackdrop: number
   }
 
   export interface DefaultTheme {
     background: IBackgroundColors
     status: IStatusColors
-    win95: IWindowsColors
+    system: ISystemColors
     levels: LevelsDefinition
   }
 }
