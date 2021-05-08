@@ -1,9 +1,9 @@
-import { createContext, ReactElement, useState } from 'react'
+import { createContext, useState } from 'react'
 import styled from 'styled-components'
-import { FlexColumn } from '../components/common/Flex'
+import { FlexColumn } from '../components/containers/Flex'
 import UrqlProvider from '../components/graphql/UrqlProvider'
 import Login, { ILogin } from '../components/user/Login'
-import Dialog, { IDialog } from '../components/common/Dialog'
+import Dialog, { IDialog } from '../components/system/Dialog/Dialog'
 import Registration from '../components/user/Registration'
 
 const Backdrop = styled.div`

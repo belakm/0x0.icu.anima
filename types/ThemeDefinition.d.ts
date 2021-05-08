@@ -40,8 +40,8 @@ declare module 'styled-components' {
     progress: string
     terminal: string
     terminalText: string
-    terminalTextSuccess: string
-    terminalTextFail: string
+    primaryMaterial: string
+    primaryMaterialText: string
   }
 
   export interface LevelsDefinition {
@@ -58,5 +58,6 @@ declare module 'styled-components' {
     status: IStatusColors
     system: ISystemColors
     levels: LevelsDefinition
+    font: string
   }
 }

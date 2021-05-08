@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { FlexColumn } from '../common/Flex'
+import { FlexColumn } from '../containers/Flex'
 import FormError from './FormError'
 
 interface IFormOption {

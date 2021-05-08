@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { FlexRow } from '../common/Flex'
-import Wrapper from '../common/Wrapper'
+import { FlexRow } from '../containers/Flex'
+import Wrapper from '../containers/Wrapper'
 import User from '../user/User'
 import LinkButton from '../system/Button/LinkButton'
 import Logo from './Logo'

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import AuthContext from '../../contexts/AuthContext'
 import ModalContext from '../../contexts/ModalContext'
-import Dropdown from '../common/Dropdown'
+import Dropdown from '../system/Dropdown/Dropdown'
 import Button from '../system/Button/Button'
 
 const User = () => {

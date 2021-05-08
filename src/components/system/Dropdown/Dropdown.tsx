@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import Button from '../system/Button/Button'
-import LinkButton from '../system/Button/LinkButton'
+import Button from '../Button/Button'
+import LinkButton from '../Button/LinkButton'
 
 interface IDropdownItem {
   text: String

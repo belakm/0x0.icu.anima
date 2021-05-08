@@ -1,6 +1,6 @@
 import Frame from '../system/Frame/Frame'
-import Wrapper from '../common/Wrapper'
-import { FlexRow } from '../common/Flex'
+import Wrapper from '../containers/Wrapper'
+import { FlexRow } from '../containers/Flex'
 
 const Footer = () => (
   <Frame
@@ -10,8 +10,8 @@ const Footer = () => (
       boxSizing: 'border-box',
     }}
   >
-    <Wrapper>
-      <FlexRow align="center center">
+    <Wrapper style={{ height: '100%' }}>
+      <FlexRow align="center center" style={{ height: '100%' }}>
         Copyright 2020 - {new Date().getFullYear()} @ Nina Belak, Mitja Belak (
         <a href="mailto:kernel.panic@0x0.icu">kernel.panic@0x0.icu</a>)
       </FlexRow>

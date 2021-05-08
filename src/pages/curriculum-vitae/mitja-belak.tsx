@@ -9,8 +9,8 @@ import {
   SmallText,
   Text,
   Title,
-} from '../../components/common/Typography'
-import { FlexColumn, FlexRow } from '../../components/common/Flex'
+} from '../../components/typography/Typography'
+import { FlexColumn, FlexRow } from '../../components/containers/Flex'
 import Frame from '../../components/system/Frame/Frame'
 import styled from 'styled-components'
 

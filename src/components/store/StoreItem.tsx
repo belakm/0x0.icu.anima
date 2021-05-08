@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react'
 import styled from 'styled-components'
-import { Article, Paragraph, SmallText, Title } from '../common/Typography'
+import { Article, Paragraph, SmallText, Title } from '../typography/Typography'
 import Frame from '../system/Frame/Frame'
 import Window, { WindowWrapper } from '../system/Window/Window'
 import ShirtDisplay from './itemDisplays/ShirtDisplay'
@@ -28,26 +28,7 @@ const StoreItem = ({
   style,
   type,
 }: IStoreItem) => {
-  return (
-    <div style={style}>
-      <WindowWrapper>
-        <Title>{name}</Title>
-        <div>
-          <PriceTag>
-            {price} <SmallText>{currency}</SmallText>
-          </PriceTag>
-          {type == 'shirt' ? (
-            <ShirtDisplay image={image} />
-          ) : (
-            <StoreItemImage src={image} />
-          )}
-        </div>
-        <Article>
-          <Paragraph>{description}</Paragraph>
-        </Article>
-      </WindowWrapper>
-    </div>
-  )
+  return <div style={style}></div>
 }
 
 export default StoreItem
