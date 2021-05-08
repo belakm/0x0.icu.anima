@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import ModalContext from '../../contexts/ModalContext'
-import Modal from '../common/Modal'
-import Button from '../system/Button/Button'
-import { WindowWrapper } from '../system/Window/Window'
-import { FlexRow } from './Flex'
+import ModalContext from '../../../contexts/ModalContext'
+import Modal from '../Modal/Modal'
+import Button from '../Button/Button'
+import { WindowWrapper } from '../Window/Window'
+import { FlexRow } from '../../containers/Flex'
 
 export interface IDialog {
   message: React.ReactNode

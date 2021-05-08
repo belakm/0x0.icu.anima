@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { Title } from '../../common/Typography'
+import { Title } from '../../typography/Typography'
 import { IItem } from '../Item'
 
 const BlankShirt = styled.img<{ hue?: number }>`

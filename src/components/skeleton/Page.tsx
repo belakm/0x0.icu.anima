@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Background from './Background'
 import TopBar from './TopBar'
-import Wrapper from '../common/Wrapper'
+import Wrapper from '../containers/Wrapper'
 import styled from 'styled-components'
 import Footer from './Footer'
 

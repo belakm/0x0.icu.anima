@@ -1,6 +1,6 @@
 import Frame from '../system/Frame/Frame'
-import Wrapper from '../common/Wrapper'
-import { FlexRow } from '../common/Flex'
+import Wrapper from '../containers/Wrapper'
+import { FlexRow } from '../containers/Flex'
 
 const Footer = () => (
   <Frame

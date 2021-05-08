@@ -42,10 +42,12 @@ const colorSettings: IColorSettings = {
     tooltip: '#fefbcc',
     terminal: '#2b2b2b',
     terminalText: 'white',
+    primaryMaterial: '#0000ff',
+    primaryMaterialText: '#ffffff',
   },
   status: {
     ok: '#35ff3f',
-    error: '#ff0062',
+    error: '#ff009d',
     warning: '#ff5e00',
   },
 }

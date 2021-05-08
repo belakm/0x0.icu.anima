@@ -1,5 +1,5 @@
-import { FlexRow } from '../common/Flex'
-import { Article, PageTitle, Paragraph } from '../common/Typography'
+import { FlexRow } from '../containers/Flex'
+import { Article, PageTitle, Paragraph } from '../typography/Typography'
 import LinkButton from '../system/Button/LinkButton'
 import Window, { WindowWrapper } from '../system/Window/Window'
 import Featured from './Featured'

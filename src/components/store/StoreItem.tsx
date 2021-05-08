@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react'
 import styled from 'styled-components'
-import { Article, Paragraph, SmallText, Title } from '../common/Typography'
+import { Article, Paragraph, SmallText, Title } from '../typography/Typography'
 import Frame from '../system/Frame/Frame'
 import Window, { WindowWrapper } from '../system/Window/Window'
 import ShirtDisplay from './itemDisplays/ShirtDisplay'

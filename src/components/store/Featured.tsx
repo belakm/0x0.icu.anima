@@ -1,8 +1,7 @@
+import { CSSProperties } from 'react'
 import styled from 'styled-components'
-import { FlexColumn } from '../common/Flex'
-import { SubTitle, Title } from '../common/Typography'
+import { Title } from '../typography/Typography'
 import LinkButton from '../system/Button/LinkButton'
-import Window, { WindowWrapper } from '../system/Window/Window'
 import { IItem } from './Item'
 import ShirtDisplay from './itemDisplays/ShirtDisplay'
 
@@ -25,26 +24,31 @@ const FeaturedSign = styled(Title)`
   color: ${({ theme }) => theme.status.error};
   z-index: 3;
   font-size: 4em;
+  text-shadow: 4px 4px 0 ${({ theme }) => theme.status.ok},
+    -4px -4px 0 ${({ theme }) => theme.status.warning},
+    -4px 4px 0 ${({ theme }) => theme.status.warning},
+    4px -4px 0 ${({ theme }) => theme.status.ok};
 `
+
+const orderButtonPosition: CSSProperties = {
+  position: 'absolute',
+  bottom: '.2em',
+  left: '1em',
+}
 
 const Featured = ({ item }: IFeatured) => {
   return (
     <FeaturedContainer>
       <FeaturedSign>FEATURED</FeaturedSign>
       {item.type == 'tshirt' ? <ShirtDisplay item={item} /> : null}
-      <Window
-        title="FEATURED ARTICLE"
-        style={{ position: 'absolute', bottom: '-1em', left: 50 }}
+      <LinkButton
+        style={orderButtonPosition}
+        size="large"
+        variant="primary"
+        href={`/article/${item.id}`}
       >
-        <WindowWrapper>
-          <FlexColumn>
-            <SubTitle>{item.name}</SubTitle>
-            <LinkButton variant="primary" href={`/article/${item.id}`}>
-              NICE, I WANT ONE!
-            </LinkButton>
-          </FlexColumn>
-        </WindowWrapper>
-      </Window>
+        CLICK TO ORDER
+      </LinkButton>
     </FeaturedContainer>
   )
 }
