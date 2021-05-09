@@ -1,20 +1,16 @@
 import { useEffect, useState } from 'react'
 import GalleryItem, { IGalleryItem } from './GalleryItem'
 import { useQuery } from 'urql'
-import { FetchPosts, FetchPostsByTopic } from '../../graphql/Post'
+import { FetchPosts } from '../../graphql/Post'
 import Window, { WindowWrapper } from '../system/Window/Window'
 import ColumnGrid from '../containers/ColumnGrid'
-import ProgressLoader from '../system/LoaderTerminal/ProgressLoader'
 import LoaderTerminal from '../system/LoaderTerminal/LoaderTerminal'
 
-interface IGallery {
-  topic: 'PORTFOLIO' | 'KERNEL_PANIC'
-}
+interface IGallery {}
 
-const Gallery = ({ topic }: IGallery) => {
+const Gallery = () => {
   const [postsResult, reexecuteQuery] = useQuery({
-    query: FetchPostsByTopic,
-    variables: { topic },
+    query: FetchPosts,
   })
 
   const { data, fetching, error } = postsResult

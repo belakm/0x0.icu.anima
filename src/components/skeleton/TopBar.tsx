@@ -7,12 +7,8 @@ import Logo from './Logo'
 
 const links = [
   {
-    name: 'KERNEL_PANIC',
-    href: '/kernel-panic',
-  },
-  {
-    name: 'SITRI ARTWORKS',
-    href: '/sitri',
+    name: 'ARTWORK',
+    href: '/artwork',
   },
   {
     name: '0x0_SPECIMEN',
