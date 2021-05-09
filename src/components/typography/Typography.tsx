@@ -105,6 +105,7 @@ export const Article = styled.article`
     + ${Paragraph} {
       margin-top: -1em;
     }
+    color: ${({ theme }) => theme.typography.text};
   }
   > *:last-child {
     margin-bottom: 0;

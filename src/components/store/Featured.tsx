@@ -1,7 +1,6 @@
 import { CSSProperties } from 'react'
 import styled from 'styled-components'
 import { Title } from '../typography/Typography'
-import LinkButton from '../system/Button/LinkButton'
 import { IItem } from './Item'
 import ShirtDisplay from './itemDisplays/ShirtDisplay'
 
@@ -11,9 +10,10 @@ interface IFeatured {
 
 const FeaturedContainer = styled.section`
   position: relative;
-  width: calc(65% - 1em);
-  height: 80vh;
+  height: 780px;
 `
+
+const featuredBorderWidth = 2
 
 const FeaturedSign = styled(Title)`
   position: absolute;
@@ -21,34 +21,22 @@ const FeaturedSign = styled(Title)`
   left: 0;
   top: 2em;
   font-weight: bold;
-  color: ${({ theme }) => theme.status.error};
+  color: ${({ theme }) => theme.store.featuredText};
   z-index: 3;
   font-size: 4em;
-  text-shadow: 4px 4px 0 ${({ theme }) => theme.status.ok},
-    -4px -4px 0 ${({ theme }) => theme.status.warning},
-    -4px 4px 0 ${({ theme }) => theme.status.warning},
-    4px -4px 0 ${({ theme }) => theme.status.ok};
+  text-shadow: ${featuredBorderWidth}px ${featuredBorderWidth}px 0
+      ${({ theme }) => theme.store.featuredBorderBottomRight},
+    -${featuredBorderWidth}px -${featuredBorderWidth}px 0
+      ${({ theme }) => theme.store.featuredBorderTopLeft},
+    -${featuredBorderWidth}px ${featuredBorderWidth}px 0 ${({ theme }) => theme.store.featuredBorderTopLeft},
+    ${featuredBorderWidth}px -${featuredBorderWidth}px 0 ${({ theme }) => theme.store.featuredBorderBottomRight};
 `
-
-const orderButtonPosition: CSSProperties = {
-  position: 'absolute',
-  bottom: '.2em',
-  left: '1em',
-}
 
 const Featured = ({ item }: IFeatured) => {
   return (
     <FeaturedContainer>
       <FeaturedSign>FEATURED</FeaturedSign>
       {item.type == 'tshirt' ? <ShirtDisplay item={item} /> : null}
-      <LinkButton
-        style={orderButtonPosition}
-        size="large"
-        variant="primary"
-        href={`/article/${item.id}`}
-      >
-        CLICK TO ORDER
-      </LinkButton>
     </FeaturedContainer>
   )
 }

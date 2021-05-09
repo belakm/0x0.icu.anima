@@ -43,7 +43,10 @@ const Logo = () => {
     <Link href="/">
       <a href="/">
         <LogoContainer>
-          <StyledLogo src="/images/brand/0x0_cat.png" />
+          <StyledLogo
+            style={{ opacity: isBlinking ? 0 : 1 }}
+            src="/images/brand/0x0_cat.png"
+          />
           {isBlinking && (
             <StyledLogoBlink src="/images/brand/0x0_cat_blink.png" />
           )}

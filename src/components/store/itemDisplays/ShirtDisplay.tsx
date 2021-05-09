@@ -1,17 +1,16 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { Title } from '../../typography/Typography'
 import { IItem } from '../Item'
 
 const BlankShirt = styled.img<{ hue?: number }>`
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
   filter: hue-rotate(${({ hue }) => hue || 0});
 `
 
 const Motive = styled.img`
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
   position: absolute;
   left: 0;
   top: 0;
@@ -21,6 +20,7 @@ const ShirtDisplayContainer = styled.section`
   position: relative;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 `
 
 interface IShirtDisplay {
