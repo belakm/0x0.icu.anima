@@ -46,6 +46,10 @@ declare module 'styled-components' {
     terminalText: string
     primaryMaterial: string
     primaryMaterialText: string
+    borderBoxBorderDefault: string
+    borderBoxBorderPrimary: string
+    borderBoxBorderSecondary: string
+    borderBoxBackground: string
   }
 
   export interface IStoreColors {

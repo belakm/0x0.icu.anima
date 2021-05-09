@@ -10,7 +10,7 @@ interface IFeatured {
 
 const FeaturedContainer = styled.section`
   position: relative;
-  height: 80vh;
+  height: 780px;
 `
 
 const featuredBorderWidth = 2

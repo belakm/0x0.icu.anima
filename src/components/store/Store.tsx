@@ -6,6 +6,7 @@ import { IItem } from './Item'
 import styled from 'styled-components'
 import { CSSProperties } from 'react'
 import { FlexColumn, FlexRow } from '../containers/Flex'
+import BorderBox from '../system/BorderBox/BorderBox'
 
 const exampleItem: IItem = {
   id: 0,
@@ -21,14 +22,19 @@ const exampleItem: IItem = {
   type: 'tshirt',
 }
 
-const ArtworkTitle = styled(Title)`
-  color: ${({ theme }) => theme.system.materialText};
-`
-
-const ArtworkBox = styled.div`
-  padding: 1em;
-  width: 50%;
-  border: 2px dashed ${({ theme }) => theme.system.materialText};
+const FeaturedArticle = styled(Article)`
+  position: relative;
+  height: 8.5em;
+  overflow: hidden;
+  margin-bottom: 2em;
+  padding: 0 1em 0 0.5em;
+  :after {
+    position: absolute;
+    background: black;
+    right: 0;
+    bottom: 0;
+    content: '…';
+  }
 `
 
 const StoreGrid = styled.div`
@@ -91,7 +97,7 @@ const FeaturedArrow = styled.span`
   left: -65%;
   top: 3em;
   width: 35%;
-  border-top: 4px dotted white;
+  border-top: 2px dashed ${({ theme }) => theme.system.borderBoxBorderSecondary};
 `
 
 const windowStyles: CSSProperties = {
@@ -117,13 +123,11 @@ const Store = () => {
         <FeaturedGridItemDescription>
           <FeaturedArrow />
           <FeaturedWindowContainer>
-            <Window style={windowStyles} title={'FEATURED ITEM'}>
-              <FeaturedWindowWrapper>
-                <Article style={{ marginBottom: '1em' }}>
-                  <Title>{exampleItem.name}</Title>
-                  <Paragraph>{exampleItem.description}</Paragraph>
-                </Article>
-              </FeaturedWindowWrapper>
+            <BorderBox type="secondary" style={windowStyles}>
+              <FeaturedArticle>
+                <Title>{exampleItem.name}</Title>
+                <Paragraph>{exampleItem.description}</Paragraph>
+              </FeaturedArticle>
               <FeaturePrice>
                 Price:{' '}
                 <FeaturePriceNumber>
@@ -143,7 +147,7 @@ const Store = () => {
               >
                 DETAILS AND ORDER
               </LinkButton>
-            </Window>
+            </BorderBox>
           </FeaturedWindowContainer>
         </FeaturedGridItemDescription>
         <FeaturedGridItemSecondary>
@@ -160,7 +164,7 @@ const Store = () => {
                       </Paragraph>
                       <Paragraph style={{ marginBottom: 0 }}>
                         In the style of 0x0 neo-cyberpunk esthetics we are
-                        preparing an assortment of with beautifully hand-drawn
+                        preparing an assortment of lovely hand-drawn
                         monster-girl NFTs for you to bolster your collection.
                       </Paragraph>
                     </FlexColumn>
@@ -190,7 +194,18 @@ const Store = () => {
         </FeaturedGridItemSecondary>
       </StoreGrid>
       <FlexRow>
-        <Window title="ABOUT US" style={{ width: '50%', marginRight: '2em' }}>
+        <BorderBox style={{ width: '50%' }} type="primary">
+          <Article>
+            <Title>Sitri's artwork</Title>
+            <Paragraph>
+              If you wanna see more of Nina Belak's (alias Sitri) artwork ...{' '}
+            </Paragraph>
+            <Paragraph>
+              <LinkButton href="/artwork">TO GALLERY</LinkButton>
+            </Paragraph>
+          </Article>
+        </BorderBox>
+        <Window title="ABOUT US" style={{ width: '50%', marginLeft: '2em' }}>
           <WindowWrapper>
             <Article>
               <PageTitle>0x0_NETWORK</PageTitle>
@@ -210,15 +225,6 @@ const Store = () => {
             </Article>
           </WindowWrapper>
         </Window>
-        <ArtworkBox>
-          <Article>
-            <ArtworkTitle>Sitri's artwork</ArtworkTitle>
-            <Paragraph>
-              If you wanna see more of Nina Belak's (alias Sitri) artwork ...{' '}
-              <LinkButton href="/artwork">FOLLOW ME</LinkButton>
-            </Paragraph>
-          </Article>
-        </ArtworkBox>
       </FlexRow>
     </>
   )

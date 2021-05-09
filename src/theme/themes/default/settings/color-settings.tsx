@@ -48,6 +48,10 @@ const colorSettings: IColorSettings = {
     terminalText: 'white',
     primaryMaterial: '#0000ff',
     primaryMaterialText: '#ffffff',
+    borderBoxBorderDefault: '#ffffff',
+    borderBoxBorderPrimary: '#35ff3f',
+    borderBoxBorderSecondary: '#ff009d',
+    borderBoxBackground: 'rgba(0, 0, 0, 0.66)',
   },
   status: {
     ok: '#35ff3f',
