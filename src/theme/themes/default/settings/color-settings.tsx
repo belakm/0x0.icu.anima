@@ -2,12 +2,16 @@ import {
   ISystemColors,
   IStatusColors,
   IBackgroundColors,
+  IStoreColors,
+  ITypographyColors,
 } from 'styled-components'
 
 interface IColorSettings {
   background: IBackgroundColors
   system: ISystemColors
   status: IStatusColors
+  store: IStoreColors
+  typography: ITypographyColors
 }
 
 const colorSettings: IColorSettings = {
@@ -49,6 +53,16 @@ const colorSettings: IColorSettings = {
     ok: '#35ff3f',
     error: '#ff009d',
     warning: '#ff5e00',
+  },
+  typography: {
+    text: '#ffffff',
+  },
+  store: {
+    featuredText: '#ff0095',
+    featuredBorderTopLeft: '#ffffff',
+    featuredBorderBottomRight: '#000000',
+    priceBackground: '#ffffff',
+    priceText: '#ff0095',
   },
 }
 

@@ -25,7 +25,7 @@ export const StyledButton = styled.button<IButton>`
       : theme.system.materialText};
   padding: ${({ size }) => (size == 'large' ? '.2em .5em' : '.5em 1em')};
   min-width: 70px;
-  font-size: ${({ size }) => (size == 'large' ? '3em' : '1em')};
+  font-size: ${({ size }) => (size == 'large' ? '2em' : '1em')};
   font-weight: ${({ variant }) => (variant == 'primary' ? 'bold' : 'normal')};
   font-family: ${({ theme }) => theme.font};
   ${border()}

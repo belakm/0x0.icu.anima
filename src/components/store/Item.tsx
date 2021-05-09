@@ -1,6 +1,7 @@
-export type TCurrency = 'EUR' | 'ADA'
+export type TCurrency = 'EUR'
+export type TCryptoCurrency = 'ADA'
 
-export type TItemType = 'tshirt'
+export type TItemType = 'tshirt' | 'nft'
 
 export interface IItem {
   id: number
@@ -8,6 +9,8 @@ export interface IItem {
   description: string
   price: number
   currency: TCurrency
+  cryptoPrice: number
+  cryptoCurrency: TCryptoCurrency
   media: string
   mediaType: string
   type: TItemType

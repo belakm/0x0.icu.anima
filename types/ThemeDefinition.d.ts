@@ -14,6 +14,10 @@ declare module 'styled-components' {
     background: string
   }
 
+  export interface ITypographyColors {
+    text: string
+  }
+
   export interface ISystemColors {
     anchor: string
     anchorVisited: string
@@ -44,6 +48,14 @@ declare module 'styled-components' {
     primaryMaterialText: string
   }
 
+  export interface IStoreColors {
+    featuredText: string
+    featuredBorderTopLeft: string
+    featuredBorderBottomRight: string
+    priceBackground: string
+    priceText: string
+  }
+
   export interface LevelsDefinition {
     background: number
     window: number
@@ -59,5 +71,7 @@ declare module 'styled-components' {
     system: ISystemColors
     levels: LevelsDefinition
     font: string
+    store: IStoreColors
+    typography: ITypographyColors
   }
 }

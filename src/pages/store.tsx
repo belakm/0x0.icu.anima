@@ -5,8 +5,6 @@ import clientOptions from '../urql/client'
 
 const PageStore = () => (
   <Page
-    title="My merch"
-    description="no touching"
     meta-title="Sitri store"
     meta-description="Sitri's store shirts and art for sale"
   >
